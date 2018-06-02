@@ -7,13 +7,29 @@ public abstract class AbstractThrowable implements Throwable {
     private Position position;
 
     @Override
-    public void move(float v, float t) {
+    public void move(float vx, float vy, long t) {
         int x = position.getX();
         int y = position.getY();
 
-        x = x + (int)(v * t) + (int)(10 * t * t / 2);
-        v = 
+        try {
+            while (onAir) {
 
+                x = x + (int) (vx * t / 1000);
+
+                y = y + (int) (vy * t / 1000) + (int) (10 * (t / 1000) * (t / 1000) / 2);
+
+
+                position.setX(x);
+                position.setY(y);
+                //position.draw();
+                Thread.sleep(t);
+
+                vx = vx + 10 * t;
+                vy = vy + 10 * t;
+            }
+        } catch (Exception e){
+            System.out.println(e);
+        }
     }
 
     @Override
