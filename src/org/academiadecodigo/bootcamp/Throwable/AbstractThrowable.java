@@ -7,7 +7,12 @@ public abstract class AbstractThrowable implements Throwable {
     private Position position;
 
     @Override
-    public void move() {
+    public void move(float v, float t) {
+        int x = position.getX();
+        int y = position.getY();
+
+        x = x + (int)(v * t) + (int)(10 * t * t / 2);
+        v = 
 
     }
 
