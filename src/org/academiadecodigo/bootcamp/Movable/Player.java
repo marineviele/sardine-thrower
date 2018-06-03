@@ -3,21 +3,39 @@ package org.academiadecodigo.bootcamp.Movable;
 import org.academiadecodigo.bootcamp.Position.Position;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-public class Player implements Movable {
+public class Player extends AbstractMovable {
     private Position position;
     private int score = 0;
     private int health = 3;
     private int velocity = 3;
-
-    Rectangle rectangle; // TESTES
+    private String url = "player.jpg";
+    Picture picture;
 
 
     public Player(int xPos, int yPos) {
-        position = new Position(xPos, yPos);
-        rectangle = new Rectangle(0, 0, xPos, yPos); // TESTES
-        rectangle.setColor(Color.YELLOW);
-        rectangle.fill();  // TESTES
+        super(xPos, yPos);
+        position = super.getPosition();
+        picture = new Picture(xPos, yPos, url);
+        super.setPicture(picture);
+    }
+
+
+
+    @Override
+    public void move(Direction direction) {
+        int prevPosition = position.getX();
+
+        super.move(direction, velocity);
+
+        int newPosition = position.getX();
+
+        picture.translate(newPosition - prevPosition, 0);
+
+
+
+
     }
 
     public void setScore(int score) {
@@ -38,21 +56,6 @@ public class Player implements Movable {
 
     public int getScore() {
         return score;
-    }
-
-    @Override
-    public void move(Direction direction) {
-
-        switch (direction){
-            case LEFT:
-                position.setX(position.getX() - velocity);
-                rectangle.translate(-velocity, 0);  // TESTES
-                break;
-            case RIGHT:
-                position.setX(position.getX() + velocity);
-                rectangle.translate(velocity, 0); // TESTES;
-                break;
-        }
     }
 
 
