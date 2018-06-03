@@ -18,20 +18,22 @@ public abstract class AbstractThrowable implements Throwable {
     public void move(float vx, float vy, long t) {
         int x = position.getX();
         int y = position.getY();
-        vx = 2;
-        vy = -50;
-
+        vx = 1500;
+        vy = -2500;
+        t = 3;
 
         try {
             while (onAir) {
 
-                if (x >= 500) {
+                if (y >= 500) {
                     return;
                 }
 
                 x = x + (int) (vx * t / 1000);
 
                 y = y + (int) (vy * t / 1000) + (int) (10 * (t / 1000) * (t / 1000) / 2);
+
+                Thread.sleep(4);
 
                 picture.translate(x - position.getX(), y - position.getY());
 
@@ -42,7 +44,7 @@ public abstract class AbstractThrowable implements Throwable {
 
                 System.out.println(position.getY() + " " + position.getX());
 
-                vx = vx + 10 * t;
+                //vx = vx + 10 * t;
                 vy = vy + 10 * t;
             }
         } catch (Exception e) {

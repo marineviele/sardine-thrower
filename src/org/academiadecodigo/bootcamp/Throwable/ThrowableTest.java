@@ -5,12 +5,19 @@ import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 public class ThrowableTest {
     public static void main(String[] args) {
-        Rectangle rectangle = new Rectangle(0,0,900,450);
+        Rectangle rectangle = new Rectangle(0,0,900,600);
         rectangle.setColor(Color.BLUE);
         rectangle.fill();
 
-        Throwable throwable = ThrowableFactory.createThrowable();
+        try {
+            //Thread.sleep(850);
+            Throwable throwable = ThrowableFactory.createThrowable();
+            Thread.sleep(1000);
+            throwable.move(0,0, 3);
+        }
 
-        throwable.move(0,0, 5);
+        catch (Exception e) {
+            System.out.println(e);
+        }
     }
 }
