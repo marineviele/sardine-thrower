@@ -30,15 +30,22 @@ public class SGFXKeyboard implements KeyboardHandler {
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
 
-        switch (keyboardEvent.getKey()) {
-            case KeyboardEvent.KEY_LEFT:
-                player.move(Direction.LEFT);
-                break;
-            case KeyboardEvent.KEY_RIGHT:
-                player.move(Direction.RIGHT);
-                break;
-        }
+        try {
+            Thread.sleep(50);
 
+            switch (keyboardEvent.getKey()) {
+                case KeyboardEvent.KEY_LEFT:
+                    player.move(Direction.LEFT);
+                    break;
+                case KeyboardEvent.KEY_RIGHT:
+                    player.move(Direction.RIGHT);
+                    break;
+
+            }
+        } catch (Exception e) {
+
+
+        }
     }
 
     @Override
