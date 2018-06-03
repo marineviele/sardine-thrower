@@ -2,14 +2,25 @@ package org.academiadecodigo.bootcamp;
 
 import org.academiadecodigo.bootcamp.Movable.Player;
 import org.academiadecodigo.bootcamp.Throwable.Throwable;
-
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 
 public class CollisionDectector {
 
-    public CollisionDectector() {
+    public  boolean collisionChecker(Throwable throwable, Player player) {
+
+        int throwablePosX;
+        int throwablePosY;
+        int throwableHeight; //igual a max height
+        int throwableWidth; //igual a max width
+
+        Picture picture = new picture;
+
+        picture.getWidth()
 
     }
+
+
 
     public boolean collisionChecker(Player player, Throwable throwable, int y) {
 
@@ -19,6 +30,7 @@ public class CollisionDectector {
 
             return true;
         }
+
 
         return false;
     }
