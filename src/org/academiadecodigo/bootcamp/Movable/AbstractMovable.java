@@ -10,6 +10,8 @@ public abstract class AbstractMovable implements Movable {
 
     private Position position;
     private Picture picture;
+    private int height;
+    private int width;
 
     public AbstractMovable(int posX, int posY){
         position = new Position(posX, posY);
@@ -21,7 +23,17 @@ public abstract class AbstractMovable implements Movable {
 
     public void setPicture(Picture picture){
         this.picture = picture;
+        this.height = picture.getHeight();
+        this.width = picture.getWidth();
         picture.draw();
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getWidth() {
+        return width;
     }
 
     public void move(Direction direction, int velocity) {

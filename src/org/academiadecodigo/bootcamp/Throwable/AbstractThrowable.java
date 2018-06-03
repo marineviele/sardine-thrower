@@ -26,6 +26,7 @@ public abstract class AbstractThrowable implements Throwable {
             while (onAir) {
 
                 if (y >= 610) {
+                    picture.delete();
                     return;
                 }
 
@@ -42,7 +43,7 @@ public abstract class AbstractThrowable implements Throwable {
 
                 //Thread.sleep(t);
 
-                System.out.println(position.getY() + " " + position.getX());
+                //System.out.println(position.getY() + " " + position.getX());
 
                 //vx = vx + 10 * t;
                 vy = vy + 10 * t;
