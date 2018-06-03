@@ -1,33 +1,51 @@
 package org.academiadecodigo.bootcamp.Throwable;
 
 import org.academiadecodigo.bootcamp.Position.Position;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public abstract class AbstractThrowable implements Throwable {
     private boolean onAir = true;
     private Position position;
+    private Picture picture;
+
+    @Override
+    public void setPicture(Picture picture) {
+        this.picture = picture;
+        picture.draw();
+    }
 
     @Override
     public void move(float vx, float vy, long t) {
         int x = position.getX();
         int y = position.getY();
+        vx = 2;
+        vy = -50;
+
 
         try {
             while (onAir) {
+
+                if (x >= 500) {
+                    return;
+                }
 
                 x = x + (int) (vx * t / 1000);
 
                 y = y + (int) (vy * t / 1000) + (int) (10 * (t / 1000) * (t / 1000) / 2);
 
+                picture.translate(x - position.getX(), y - position.getY());
 
                 position.setX(x);
                 position.setY(y);
-                //position.draw();
+
                 Thread.sleep(t);
+
+                System.out.println(position.getY() + " " + position.getX());
 
                 vx = vx + 10 * t;
                 vy = vy + 10 * t;
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
