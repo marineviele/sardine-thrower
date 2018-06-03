@@ -14,9 +14,7 @@ public class CollisionDectector {
         int throwableHeight; //igual a max height
         int throwableWidth; //igual a max width
 
-        Picture picture = new picture;
-
-        picture.getWidth()
+        player.
 
     }
 
