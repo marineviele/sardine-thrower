@@ -13,31 +13,36 @@ public abstract class AbstractMovable implements Movable {
     private int height;
     private int width;
 
-    public AbstractMovable(int posX, int posY){
+    public AbstractMovable(int posX, int posY) {
         position = new Position(posX, posY);
     }
 
-    public Position getPosition(){
+    @Override
+    public Position getPosition() {
         return position;
     }
 
-    public void setPicture(Picture picture){
+    @Override
+    public void setPicture(Picture picture) {
         this.picture = picture;
         this.height = picture.getHeight();
         this.width = picture.getWidth();
         picture.draw();
     }
 
+    @Override
     public int getHeight() {
         return height;
     }
 
+    @Override
     public int getWidth() {
         return width;
     }
 
+    @Override
     public void move(Direction direction, int velocity) {
-        switch (direction){
+        switch (direction) {
             case LEFT:
                 position.setX(position.getX() - velocity);
                 break;
