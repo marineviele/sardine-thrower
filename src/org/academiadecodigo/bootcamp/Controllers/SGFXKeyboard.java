@@ -37,8 +37,8 @@ public class SGFXKeyboard implements KeyboardHandler {
             case KeyboardEvent.KEY_RIGHT:
                 player.move(Direction.RIGHT);
                 break;
-        }
 
+        }
     }
 
     @Override
