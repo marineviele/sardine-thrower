@@ -11,12 +11,10 @@ public class CollisionDectector {
 
         int throwablePosX;
         int throwablePosY;
-        int throwableHeight; //igual a max height
-        int throwableWidth; //igual a max width
+        int throwableHeight;
+        int throwableWidth;
 
-        Picture picture = new picture;
 
-        picture.getWidth()
 
     }
 
