@@ -1,17 +1,16 @@
-package org.academiadecodigo.bootcamp.Movable;
+package org.academiadecodigo.bootcamp.Controllers;
+
+import org.academiadecodigo.bootcamp.Movable.Direction;
+import org.academiadecodigo.bootcamp.Movable.Player;
+import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
+import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
+import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
+import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
 /**
  * Created by codecadet on 03/06/2018.
  */
 public class SGFXKeyboard {
-
-    package org.academiadecodigo.bootcamp.Movable;
-
-    import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
-    import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
-    import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
-    import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
-
     public class SimpleGFXKeyboard implements KeyboardHandler {
 
         Player player;
@@ -51,6 +50,4 @@ public class SGFXKeyboard {
 
         }
     }
-
-
 }
