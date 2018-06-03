@@ -16,7 +16,7 @@ public class Game {
     public void init() {
         //draw stage
         thrower = new Thrower();
-        player = new Player();
+        player = new Player(0,0);
         collisionDectector = new CollisionDectector();
     }
 

@@ -10,15 +10,15 @@ public class Player implements Movable {
     private int health = 3;
     private int velocity = 10;
 
-    //Rectangle rectangle; // TESTES
+    Rectangle rectangle; // TESTES
 
 
     public Player(int xPos, int yPos) {
         position.setX(xPos);
         position.setY(yPos);
-        //rectangle = new Rectangle(0, 0, xPos, yPos); // TESTES
-        //rectangle.setColor(Color.YELLOW);
-        //rectangle.fill();  // TESTES
+        rectangle = new Rectangle(0, 0, xPos, yPos); // TESTES
+        rectangle.setColor(Color.YELLOW);
+        rectangle.fill();  // TESTES
     }
 
     public void setScore(int score) {
