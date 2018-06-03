@@ -8,14 +8,13 @@ public class Player implements Movable {
     private Position position;
     private int score = 0;
     private int health = 3;
-    private int velocity = 10;
+    private int velocity = 3;
 
     Rectangle rectangle; // TESTES
 
 
     public Player(int xPos, int yPos) {
-        position.setX(xPos);
-        position.setY(yPos);
+        position = new Position(xPos, yPos);
         rectangle = new Rectangle(0, 0, xPos, yPos); // TESTES
         rectangle.setColor(Color.YELLOW);
         rectangle.fill();  // TESTES
@@ -47,11 +46,11 @@ public class Player implements Movable {
         switch (direction){
             case LEFT:
                 position.setX(position.getX() - velocity);
-                //rectangle.translate(-velocity, 0);  // TESTES
+                rectangle.translate(-velocity, 0);  // TESTES
                 break;
             case RIGHT:
                 position.setX(position.getX() + velocity);
-                //rectangle.translate(velocity, 0); // TESTES;
+                rectangle.translate(velocity, 0); // TESTES;
                 break;
         }
     }
