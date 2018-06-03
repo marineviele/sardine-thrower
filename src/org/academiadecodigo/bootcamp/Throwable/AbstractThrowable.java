@@ -46,4 +46,9 @@ public abstract class AbstractThrowable implements Throwable {
     public Position getPosition() {
         return position;
     }
+
+    @Override
+    public void setPosition(Position position) {
+        this.position = position;
+    }
 }
