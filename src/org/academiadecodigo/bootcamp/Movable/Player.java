@@ -13,15 +13,12 @@ public class Player extends AbstractMovable {
     private String url = "plate.jpg";
     Picture picture;
 
-
     public Player(int xPos, int yPos) {
         super(xPos, yPos);
         position = super.getPosition();
         picture = new Picture(xPos, yPos, url);
         super.setPicture(picture);
     }
-
-
 
     @Override
     public void move(Direction direction) {
@@ -32,10 +29,6 @@ public class Player extends AbstractMovable {
         int newPosition = position.getX();
 
         picture.translate(newPosition - prevPosition, 0);
-
-
-
-
     }
 
     public void setScore(int score) {
@@ -57,6 +50,4 @@ public class Player extends AbstractMovable {
     public int getScore() {
         return score;
     }
-
-
 }

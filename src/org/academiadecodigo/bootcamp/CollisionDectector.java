@@ -14,8 +14,7 @@ public class CollisionDectector {
         int throwableHeight;
         int throwableWidth;
 
-
-
+        return true;
     }
 
 
