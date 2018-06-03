@@ -4,6 +4,10 @@ public class SGFXPosition extends Position {
     private int x;
     private int y;
 
+    public SGFXPosition(int x, int y) {
+        super(x, y);
+    }
+
     @Override
     public int getX() {
         return x;
@@ -22,5 +26,10 @@ public class SGFXPosition extends Position {
     @Override
     public void setY(int y) {
         this.y = y;
+    }
+
+    @Override
+    public void drawPicture() {
+
     }
 }
