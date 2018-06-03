@@ -5,7 +5,7 @@ import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 public class ThrowableTest {
     public static void main(String[] args) {
-        Rectangle rectangle = new Rectangle(0,0,900,600);
+        Rectangle rectangle = new Rectangle(10,10,1600,700);
         rectangle.setColor(Color.BLUE);
         rectangle.fill();
 
