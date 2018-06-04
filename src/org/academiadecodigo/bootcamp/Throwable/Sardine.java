@@ -4,7 +4,7 @@ import org.academiadecodigo.bootcamp.Position.Position;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Sardine extends AbstractThrowable {
-    private String url = "sardine.jpg";
+    private String url = "sardine.png";
 
     public Sardine (Position position) {
         super.setPosition(position);

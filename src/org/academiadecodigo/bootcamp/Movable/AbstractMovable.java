@@ -1,5 +1,6 @@
 package org.academiadecodigo.bootcamp.Movable;
 
+import org.academiadecodigo.bootcamp.Game;
 import org.academiadecodigo.bootcamp.Position.Position;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
@@ -44,10 +45,21 @@ public abstract class AbstractMovable implements Movable {
     public void move(Direction direction, int velocity) {
         switch (direction) {
             case LEFT:
-                position.setX(position.getX() - velocity);
+                for (int i = 0; i < velocity; i++) {
+                    if (position.getX() <= 210) {
+                        break;
+                    }
+                    position.setX(position.getX() - 1);
+                }
                 break;
+
             case RIGHT:
-                position.setX(position.getX() + velocity);
+                for (int i = 0; i < velocity; i++) {
+                    if (position.getX() >= Game.stage.getMaxX() - picture.getWidth()) {
+                        break;
+                    }
+                    position.setX(position.getX() + 1);
+                }
                 break;
         }
     }
