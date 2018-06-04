@@ -9,12 +9,27 @@ public class CollisionDectector {
 
     public  boolean collisionChecker(Throwable throwable, Player player) {
 
-        int throwablePosX;
-        int throwablePosY;
-        int throwableHeight;
-        int throwableWidth;
+
+        // percorre a primeira linha do player image
+        // percorre os pixeis do thrower imagem
+
+
+        int throwablePosX = throwable.getPosition().getX();
+        int throwablePosY = throwable.getPosition().getY();
+        //int throwableHeight = throwable.getHeight();
+        //int throwableWidth = throwable.getWidth();
+        int playerPosX = player.getPosition().getX();
+        int playerPosY = player.getPosition().getY();
+        int playerHeight = player.getHeight();
+        int playerWidth = player.getWidth();
+
+
+
 
         return true;
+
+
+
     }
 
 
