@@ -1,6 +1,7 @@
 package org.academiadecodigo.bootcamp;
 
 import org.academiadecodigo.bootcamp.Movable.Player;
+import org.academiadecodigo.bootcamp.Position.Position;
 import org.academiadecodigo.bootcamp.Throwable.Throwable;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
@@ -9,27 +10,21 @@ public class CollisionDectector {
 
     public  boolean collisionChecker(Throwable throwable, Player player) {
 
+        int playerMinY = player.getPosition().getY();
+        int throwableMaxY = throwable.getPosition().getY() + throwable.getHeight();
 
-        // percorre a primeira linha do player image
-        // percorre os pixeis do thrower imagem
-
-
-        int throwablePosX = throwable.getPosition().getX();
-        int throwablePosY = throwable.getPosition().getY();
-        //int throwableHeight = throwable.getHeight();
-        //int throwableWidth = throwable.getWidth();
-        int playerPosX = player.getPosition().getX();
-        int playerPosY = player.getPosition().getY();
-        int playerHeight = player.getHeight();
-        int playerWidth = player.getWidth();
+        int playerPixMiddleX = ( player.getPosition().getX() + player.getWidth() ) / 2;
+        int throwableMinX = throwable.getPosition().getX();
+        int throwableMaxX = throwable.getPosition().getX() + throwable.getWidth();
 
 
+        if ( (playerMinY == throwableMaxY) &&
+                (throwableMinX < playerPixMiddleX &&
+                        playerPixMiddleX < throwableMaxX) ) {
+            return true;
+        }
 
-
-        return true;
-
-
-
+        return false;
     }
 
 
@@ -42,7 +37,6 @@ public class CollisionDectector {
 
             return true;
         }
-
 
         return false;
     }
