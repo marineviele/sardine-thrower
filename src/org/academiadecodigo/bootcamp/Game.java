@@ -9,7 +9,6 @@ public class Game {
     private Thrower thrower;
     public static Player player;
     public static Picture stage;
-    private CollisionDectector collisionDectector;
     private Throwable throwable;
 
     public Game() {
@@ -36,7 +35,9 @@ public class Game {
 
         while (throwable.getOnAir()) {
             throwable.move();
-            System.out.println(CollisionDectector.collisionChecker(throwable, player));
+            if(CollisionDectector.collisionChecker(throwable, player)) {
+                throwable.setOnAir(false);
+            }
         }
     }
 }

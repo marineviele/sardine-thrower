@@ -38,7 +38,6 @@ public abstract class AbstractThrowable implements Throwable {
             if (y >= Game.stage.getMaxY() - picture.getHeight() - 10) {
                 picture.delete();
                 setOnAir(false);
-                System.out.println("bateu na trave");
                 return;
             }
 
