@@ -15,4 +15,8 @@ public interface Throwable {
     void setPosition(Position position);
 
     void setPicture(Picture picture);
+
+    int getHeight();
+
+    int getWidth();
 }

@@ -22,7 +22,7 @@ public class Thrower {
         try {
 
             Thread.sleep(1000);
-            for(int i = 1; i < throwables.length; i++) {
+            for(int i = 0; i < throwables.length; i++) {
                 throwables[i].move(0, 0, 3);
             }
         }

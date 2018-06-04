@@ -1,5 +1,6 @@
 package org.academiadecodigo.bootcamp.Movable;
 
+import org.academiadecodigo.bootcamp.Controllers.SGFXKeyboard;
 import org.academiadecodigo.bootcamp.Position.Position;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
@@ -18,6 +19,9 @@ public class Player extends AbstractMovable {
         position = super.getPosition();
         picture = new Picture(xPos, yPos, url);
         super.setPicture(picture);
+
+        SGFXKeyboard sgfxKeyboard = new SGFXKeyboard();
+        sgfxKeyboard.initKeyboard(this);
     }
 
     @Override
