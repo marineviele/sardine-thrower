@@ -8,7 +8,8 @@ public class Thrower {
     private Picture picture;
 
     public Thrower() {
-        picture = new Picture(10, 410, "thrower.jpg");
+        picture = new Picture(0, 0, "thrower.jpg");
+        picture.translate(10, Game.stage.getMaxY()-picture.getHeight());
         picture.draw();
     }
 

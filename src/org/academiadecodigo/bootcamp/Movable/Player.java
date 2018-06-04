@@ -2,8 +2,6 @@ package org.academiadecodigo.bootcamp.Movable;
 
 import org.academiadecodigo.bootcamp.Controllers.SGFXKeyboard;
 import org.academiadecodigo.bootcamp.Position.Position;
-import org.academiadecodigo.simplegraphics.graphics.Color;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Player extends AbstractMovable {
