@@ -1,5 +1,6 @@
 package org.academiadecodigo.bootcamp.Throwable;
 
+import org.academiadecodigo.bootcamp.Game;
 import org.academiadecodigo.bootcamp.Position.Position;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
@@ -7,6 +8,10 @@ public abstract class AbstractThrowable implements Throwable {
     private boolean onAir = true;
     private Position position;
     private Picture picture;
+    private float vx = 1500;
+    private float vy = -3600;
+    private long t = 2;
+
 
     @Override
     public int getHeight() {
@@ -25,39 +30,30 @@ public abstract class AbstractThrowable implements Throwable {
     }
 
     @Override
-    public void move(float vx, float vy, long t) {
+    public void move() {
         int x = position.getX();
         int y = position.getY();
-        vx = 2000;
-        vy = -3650;
-        t = 2;
 
         try {
-            while (onAir) {
-
-                if (y >= 610) {
-                    picture.delete();
-                    return;
-                }
-
-                x = x + (int) (vx * t / 1000);
-
-                y = y + (int) (vy * t / 1000) + (int) (10 * (t / 1000) * (t / 1000) / 2);
-
-                Thread.sleep(5);
-
-                picture.translate(x - position.getX(), y - position.getY());
-
-                position.setX(x);
-                position.setY(y);
-
-                //Thread.sleep(t);
-
-                //System.out.println(position.getY() + " " + position.getX());
-
-                //vx = vx + 10 * t;
-                vy = vy + 10 * t;
+            if (y >= Game.stage.getMaxY() - picture.getHeight() - 10) {
+                picture.delete();
+                setOnAir(false);
+                System.out.println("bateu na trave");
+                return;
             }
+
+            x = x + (int) (vx * t / 1000);
+
+            y = y + (int) (vy * t / 1000) + (int) (10 * (t / 1000) * (t / 1000) / 2);
+
+            Thread.sleep(5);
+
+            picture.translate(x - position.getX(), y - position.getY());
+
+            position.setX(x);
+            position.setY(y);
+
+            vy = vy + 10 * t;
         } catch (Exception e) {
             System.out.println(e);
         }

@@ -1,13 +1,16 @@
 package org.academiadecodigo.bootcamp;
 
 import org.academiadecodigo.bootcamp.Movable.Player;
+import org.academiadecodigo.bootcamp.Throwable.Throwable;
+import org.academiadecodigo.bootcamp.Throwable.ThrowableFactory;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Game {
-    Thrower thrower;
-    Player player;
+    private Thrower thrower;
+    public static Player player;
     public static Picture stage;
-    CollisionDectector collisionDectector;
+    private CollisionDectector collisionDectector;
+    private Throwable throwable;
 
     public Game() {
 
@@ -15,15 +18,25 @@ public class Game {
 
     public void init() {
         stage = new Picture(10, 10, "background2.jpg");
-
         stage.draw();
 
         thrower = new Thrower();
         player = new Player(500, 650);
-        collisionDectector = new CollisionDectector();
+        throwable = (ThrowableFactory.createThrowable());
     }
 
     public void start() {
-        thrower.sendThrowable(10);
+        try {
+            Thread.sleep(1000);
+        }
+
+        catch (Exception e) {
+            System.out.println(e);
+        }
+
+        while (throwable.getOnAir()) {
+            throwable.move();
+            System.out.println(CollisionDectector.collisionChecker(throwable, player));
+        }
     }
 }

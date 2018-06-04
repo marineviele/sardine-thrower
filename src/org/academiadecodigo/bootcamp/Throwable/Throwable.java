@@ -4,7 +4,7 @@ import org.academiadecodigo.bootcamp.Position.Position;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public interface Throwable {
-    public void move(float vx, float vy, long t);
+    public void move();
 
     boolean getOnAir();
 
