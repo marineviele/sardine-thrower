@@ -9,6 +9,16 @@ public abstract class AbstractThrowable implements Throwable {
     private Picture picture;
 
     @Override
+    public int getHeight() {
+        return picture.getHeight();
+    }
+
+    @Override
+    public int getWidth() {
+        return picture.getWidth();
+    }
+
+    @Override
     public void setPicture(Picture picture) {
         this.picture = picture;
         picture.draw();
