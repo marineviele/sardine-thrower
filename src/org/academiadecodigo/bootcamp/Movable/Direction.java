@@ -5,5 +5,6 @@ package org.academiadecodigo.bootcamp.Movable;
  */
 public enum Direction {
     LEFT,
-    RIGHT
+    RIGHT,
+    NODIRECTION
 }

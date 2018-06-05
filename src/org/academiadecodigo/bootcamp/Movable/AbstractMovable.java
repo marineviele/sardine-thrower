@@ -13,9 +13,15 @@ public abstract class AbstractMovable implements Movable {
     private Picture picture;
     private int height;
     private int width;
+    private Direction direction;
 
     public AbstractMovable(int posX, int posY) {
         position = new Position(posX, posY);
+        direction = Direction.NODIRECTION;
+    }
+
+    public void setDirection(Direction direction){
+        this.direction = direction;
     }
 
     @Override
@@ -41,8 +47,8 @@ public abstract class AbstractMovable implements Movable {
         return width;
     }
 
-    @Override
-    public void move(Direction direction, int velocity) {
+    //@Override
+    /*public void move(Direction direction, int velocity, int dt) {
         switch (direction) {
             case LEFT:
                 for (int i = 0; i < velocity; i++) {
@@ -62,5 +68,5 @@ public abstract class AbstractMovable implements Movable {
                 }
                 break;
         }
-    }
+    }*/
 }
