@@ -2,6 +2,7 @@ package org.academiadecodigo.bootcamp.Throwable;
 
 import org.academiadecodigo.bootcamp.Game;
 import org.academiadecodigo.bootcamp.Position.Position;
+import org.academiadecodigo.bootcamp.Sound;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public abstract class AbstractThrowable implements Throwable {
@@ -21,6 +22,7 @@ public abstract class AbstractThrowable implements Throwable {
         try {
             if (y >= Game.stage.getMaxY() - picture.getHeight() - 10) {
                 picture.delete();
+                Sound.play("missedCatch.wav");
                 setOnFloor(true);
                 setOnAir(false);
                 return;

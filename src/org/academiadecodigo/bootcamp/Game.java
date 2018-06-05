@@ -47,7 +47,6 @@ public class Game {
                 if(CatchDectector.catchChecker(throwables[i], player)) {
                     throwables[i].setOnAir(false);
                     score.incrementScore();
-                    System.out.println(score.getScore());
                 }
             }
         }

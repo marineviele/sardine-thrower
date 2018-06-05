@@ -24,6 +24,7 @@ public class Score {
     public void incrementScore(){
         score++;
         scoreToString();
+        text.draw();
     }
 
     public void decrementScore(){
@@ -33,15 +34,15 @@ public class Score {
     }
 
     public void displayScore(){
-        text = new Text(30, 30, "");
+        text = new Text(50, 30, "");
         scoreToString();
         text.setColor(Color.WHITE);
-        text.grow(10,10);
+        text.grow(30,20);
         text.draw();
     }
 
     private void scoreToString(){
         scoreText = score.toString();
-        text.setText(scoreText);
+        text.setText("Score: " + scoreText);
     }
 }
