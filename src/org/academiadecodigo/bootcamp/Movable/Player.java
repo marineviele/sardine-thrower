@@ -34,7 +34,7 @@ public class Player extends AbstractMovable {
                 case LEFT:
                     if (position.getX() - velocity < 210){
                         x = 210;
-                        position.setX(x);
+                        position.setX(x); //mas tens de apagar este...
                         position.setX(x + 30); //CORRIGIR
                         break;
                     }
