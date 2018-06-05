@@ -25,7 +25,7 @@ public class Game {
             throwables[i] = ThrowableFactory.createThrowable();
         }
 
-        player = new Player(500, 650);
+        player = new Player(stage.getWidth()/2, 650);
 
         thrower = new Thrower();
 
