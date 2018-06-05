@@ -9,19 +9,24 @@ public class Game {
     private Thrower thrower;
     public static Player player;
     public static Picture stage;
-    private Throwable throwable;
+    private Throwable[] throwables;
 
     public Game() {
-
     }
 
-    public void init() {
+    public void init(int numThrowables) {
         stage = new Picture(10, 10, "background2.jpg");
         stage.draw();
 
-        thrower = new Thrower();
         player = new Player(500, 650);
-        throwable = (ThrowableFactory.createThrowable());
+
+        throwables = new Throwable[numThrowables];
+
+        for(int i = 0; i < numThrowables; i++) {
+            throwables[i] = ThrowableFactory.createThrowable();
+        }
+
+        thrower = new Thrower();
     }
 
     public void start() {
@@ -33,10 +38,12 @@ public class Game {
             System.out.println(e);
         }
 
-        while (throwable.getOnAir()) {
-            thrower.sendThrowable(throwable);
-            if(CatchDectector.catchChecker(throwable, player)) {
-                throwable.setOnAir(false);
+        for(int i = 0; i < throwables.length; i++) {
+            while (throwables[i].getOnAir()) {
+                thrower.sendThrowable(throwables[i]);
+                if(CatchDectector.catchChecker(throwables[i], player)) {
+                    throwables[i].setOnAir(false);
+                }
             }
         }
     }
