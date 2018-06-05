@@ -34,8 +34,8 @@ public class Game {
         }
 
         while (throwable.getOnAir()) {
-            throwable.move();
-            if(CollisionDectector.collisionChecker(throwable, player)) {
+            thrower.sendThrowable(throwable);
+            if(CatchDectector.catchChecker(throwable, player)) {
                 throwable.setOnAir(false);
             }
         }

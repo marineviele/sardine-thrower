@@ -9,7 +9,7 @@ public class Player extends AbstractMovable {
     private int score = 0;
     private int health = 3;
     private int velocity = 100;
-    private String url = "plate.jpg";
+    private String url = "plate.png";
     Picture picture;
 
     public Player(int xPos, int yPos) {

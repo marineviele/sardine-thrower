@@ -10,13 +10,27 @@ public interface Throwable {
 
     void setOnAir(boolean value);
 
+    boolean getOnFloor();
+
+    void setOnFloor(boolean value);
+
     Position getPosition();
 
     void setPosition(Position position);
 
     void setPicture(Picture picture);
 
+    Picture getPicture();
+
     int getHeight();
 
     int getWidth();
+
+    float getVx();
+
+    void setVx(float vx);
+
+    float getVy();
+
+    void setVy(float vy);
 }

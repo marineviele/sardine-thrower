@@ -6,28 +6,12 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public abstract class AbstractThrowable implements Throwable {
     private boolean onAir = true;
+    private boolean onFloor = false;
     private Position position;
     private Picture picture;
     private float vx = 1500;
     private float vy = -3600;
     private long t = 2;
-
-
-    @Override
-    public int getHeight() {
-        return picture.getHeight();
-    }
-
-    @Override
-    public int getWidth() {
-        return picture.getWidth();
-    }
-
-    @Override
-    public void setPicture(Picture picture) {
-        this.picture = picture;
-        picture.draw();
-    }
 
     @Override
     public void move() {
@@ -37,6 +21,7 @@ public abstract class AbstractThrowable implements Throwable {
         try {
             if (y >= Game.stage.getMaxY() - picture.getHeight() - 10) {
                 picture.delete();
+                setOnFloor(true);
                 setOnAir(false);
                 return;
             }
@@ -59,6 +44,47 @@ public abstract class AbstractThrowable implements Throwable {
     }
 
     @Override
+    public float getVx() {
+        return vx;
+    }
+
+    @Override
+    public void setVx(float vx) {
+        this.vx = vx;
+    }
+
+    @Override
+    public float getVy() {
+        return vy;
+    }
+
+    @Override
+    public void setVy(float vy) {
+        this.vy = vy;
+    }
+
+    @Override
+    public int getHeight() {
+        return picture.getHeight();
+    }
+
+    @Override
+    public int getWidth() {
+        return picture.getWidth();
+    }
+
+    @Override
+    public void setPicture(Picture picture) {
+        this.picture = picture;
+        picture.draw();
+    }
+
+    @Override
+    public Picture getPicture() {
+        return picture;
+    }
+
+    @Override
     public boolean getOnAir() {
         return onAir;
     }
@@ -66,6 +92,16 @@ public abstract class AbstractThrowable implements Throwable {
     @Override
     public void setOnAir(boolean value) {
         onAir = value;
+    }
+
+    @Override
+    public boolean getOnFloor() {
+        return onFloor;
+    }
+
+    @Override
+    public void setOnFloor(boolean value) {
+        onFloor = value;
     }
 
     @Override
