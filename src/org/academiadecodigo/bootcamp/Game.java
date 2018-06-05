@@ -10,6 +10,7 @@ public class Game {
     public static Player player;
     public static Picture stage;
     private Throwable[] throwables;
+    private Score score;
 
     public Game() {
     }
@@ -18,15 +19,17 @@ public class Game {
         stage = new Picture(10, 10, "background2.jpg");
         stage.draw();
 
-        player = new Player(500, 650);
-
         throwables = new Throwable[numThrowables];
 
         for(int i = 0; i < numThrowables; i++) {
             throwables[i] = ThrowableFactory.createThrowable();
         }
 
+        player = new Player(500, 650);
+
         thrower = new Thrower();
+
+        score = new Score();
     }
 
     public void start() {
@@ -43,6 +46,8 @@ public class Game {
                 thrower.sendThrowable(throwables[i]);
                 if(CatchDectector.catchChecker(throwables[i], player)) {
                     throwables[i].setOnAir(false);
+                    score.incrementScore();
+                    System.out.println(score.getScore());
                 }
             }
         }

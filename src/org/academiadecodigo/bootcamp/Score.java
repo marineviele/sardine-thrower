@@ -1,5 +1,6 @@
 package org.academiadecodigo.bootcamp;
 
+import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Text;
 
 /**
@@ -8,6 +9,8 @@ import org.academiadecodigo.simplegraphics.graphics.Text;
 public class Score {
 
     private Integer score;
+    private String scoreText;
+    private Text text;
 
     public Score(){
         score = 0;
@@ -20,14 +23,25 @@ public class Score {
 
     public void incrementScore(){
         score++;
+        scoreToString();
     }
 
     public void decrementScore(){
         score--;
+        scoreToString();
+        text.draw();
     }
 
     public void displayScore(){
-        String scoreText = score.toString();
-        Text text = new Text(10, 10, scoreText);
+        text = new Text(30, 30, "");
+        scoreToString();
+        text.setColor(Color.WHITE);
+        text.grow(10,10);
+        text.draw();
+    }
+
+    private void scoreToString(){
+        scoreText = score.toString();
+        text.setText(scoreText);
     }
 }
