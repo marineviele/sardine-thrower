@@ -10,9 +10,12 @@ public class CatchDectector {
         int playerMiddleX = (player.getPosition().getX() + player.getWidth()) / 2;
         int throwableMiddleX = (throwable.getPosition().getX() + throwable.getWidth()) / 2;
 
-        if (throwableMaxY > playerY && throwableMiddleX > playerMiddleX - 15 && throwableMiddleX < playerMiddleX + 15) {
-            Sound.play("catch.wav");
-            throwable.getPicture().delete();
+        if (throwableMaxY > playerY &&
+                throwableMiddleX > playerMiddleX - 15 &&
+                throwableMiddleX < playerMiddleX + 15) {
+
+            Sound.play("catch.wav");            //SFGX
+            throwable.getPicture().delete();                //SFGX
             return true;
         }
         return false;

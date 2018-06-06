@@ -4,9 +4,7 @@ import org.academiadecodigo.bootcamp.Position.Position;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public interface Movable {
-    //void move(Direction direction);
-
-    //void move(Direction direction, int dt);
+    void move(Direction direction);
 
     void setPicture(Picture picture);
 

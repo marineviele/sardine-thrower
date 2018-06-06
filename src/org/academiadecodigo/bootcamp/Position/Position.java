@@ -29,10 +29,6 @@ public class Position {
         return position1.x == position2.x && position1.y == position2.y;
     }
 
-    public void drawPicture() {
-
-    }
-
     @Override
     public String toString() {
         return "Position{" +

@@ -28,8 +28,4 @@ public class SGFXPosition extends Position {
         this.y = y;
     }
 
-    @Override
-    public void drawPicture() {
-
-    }
 }
