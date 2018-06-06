@@ -9,7 +9,7 @@ public class Player extends AbstractMovable {
     public Position position;
     private int score = 0;
     private int health = 3;
-    private int velocity = 30;
+    private int velocity = 75;
     private String url = "plate.png";
     private Picture picture;                                //SFGX
     int x;

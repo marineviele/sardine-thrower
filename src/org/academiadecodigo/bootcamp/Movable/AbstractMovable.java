@@ -27,8 +27,8 @@ public abstract class AbstractMovable implements Movable {
 
         switch (direction) {
             case LEFT:
-                if (position.getX() - velocity < 210){
-                    x = 210;
+                if (position.getX() - velocity < 200){
+                    x = 200;
                     position.setX(x);
                     break;
                 }
@@ -37,8 +37,8 @@ public abstract class AbstractMovable implements Movable {
                 break;
 
             case RIGHT:
-                if (position.getX() + velocity > Game.stage.getMaxX() - picture.getWidth() - 45){
-                    x = Game.stage.getMaxX() - picture.getWidth();
+                if (position.getX() + velocity > Game.stage.getMaxX() - picture.getWidth()){
+                    x = Game.stage.getMaxX() - picture.getWidth()-15;
                     position.setX(x);
                     break;
                 }
