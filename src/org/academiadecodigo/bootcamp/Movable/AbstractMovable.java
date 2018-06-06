@@ -4,16 +4,13 @@ import org.academiadecodigo.bootcamp.Game;
 import org.academiadecodigo.bootcamp.Position.Position;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-/**
- * Created by codecadet on 03/06/2018.
- */
 public abstract class AbstractMovable implements Movable {
 
     private Position position;
     private Picture picture;
     private int height;
     private int width;
-    private int velocity = 60;
+    private int velocity = 75;
     int x;
     int y;
 
@@ -45,12 +42,9 @@ public abstract class AbstractMovable implements Movable {
                 x = x + tempVelocity;
                 break;
         }
-        System.out.println(velocity);
-        System.out.println(tempVelocity);
 
         picture.translate(x - position.getX(), 0);              //SFGX
         position.setX(x);
-
     }
 
     @Override
@@ -75,5 +69,4 @@ public abstract class AbstractMovable implements Movable {
     public int getWidth() {
         return width;
     }
-
 }
