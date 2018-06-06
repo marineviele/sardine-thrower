@@ -11,18 +11,18 @@ public class Player extends AbstractMovable {
     private int health = 3;
     private int velocity = 30;
     private String url = "plate.png";
-    private Picture picture;
+    private Picture picture;                                //SFGX
     int x;
     int y;
 
     public Player(int xPos, int yPos) {
         super(xPos, yPos);
         position = super.getPosition();
-        picture = new Picture(xPos, yPos, url);
-        super.setPicture(picture);
+        picture = new Picture(xPos, yPos, url);             //SFGX
+        super.setPicture(picture);                          //SFGX
 
-        SGFXKeyboard sgfxKeyboard = new SGFXKeyboard();
-        sgfxKeyboard.initKeyboard(this);
+        SGFXKeyboard sgfxKeyboard = new SGFXKeyboard();     //SFGX
+        sgfxKeyboard.initKeyboard(this);             //SFGX
     }
 
 

@@ -35,6 +35,7 @@ public abstract class AbstractMovable implements Movable {
                 x = x - velocity;
                 position.setX(x + velocity);
                 break;
+
             case RIGHT:
                 if (position.getX() + velocity > Game.stage.getMaxX() - picture.getWidth()){
                     x = Game.stage.getMaxX() - picture.getWidth();
@@ -45,7 +46,8 @@ public abstract class AbstractMovable implements Movable {
                 position.setX(x - velocity);
                 break;
         }
-        picture.translate(x - position.getX(), 0);
+
+        picture.translate(x - position.getX(), 0);              //SFGX
         position.setX(x);
 
         System.out.println(position.getX());
@@ -62,9 +64,9 @@ public abstract class AbstractMovable implements Movable {
     @Override
     public void setPicture(Picture picture) {
         this.picture = picture;
-        this.height = picture.getHeight();
-        this.width = picture.getWidth();
-        picture.draw();
+        this.height = picture.getHeight();          //SFGX
+        this.width = picture.getWidth();            //SFGX
+        picture.draw();                             //SFGX
     }
 
     @Override
