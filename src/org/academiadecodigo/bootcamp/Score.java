@@ -27,12 +27,6 @@ public class Score {
         text.draw();
     }
 
-    public void decrementScore(){
-        score--;
-        scoreToString();
-        text.draw();
-    }
-
     public void displayScore(){
         text = new Text(50, 30, "");
         scoreToString();

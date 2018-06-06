@@ -15,29 +15,38 @@ public class SGFXKeyboard implements KeyboardHandler {
         this.player = player;
         Keyboard keyboard = new Keyboard(this);
 
-        KeyboardEvent left = new KeyboardEvent();
-        left.setKey(KeyboardEvent.KEY_LEFT);
-        left.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        KeyboardEvent leftPress = new KeyboardEvent();
+        leftPress.setKey(KeyboardEvent.KEY_LEFT);
+        leftPress.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
-        KeyboardEvent right = new KeyboardEvent();
-        right.setKey(KeyboardEvent.KEY_RIGHT);
-        right.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        KeyboardEvent rightPress = new KeyboardEvent();
+        rightPress.setKey(KeyboardEvent.KEY_RIGHT);
+        rightPress.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
-        keyboard.addEventListener(left);
-        keyboard.addEventListener(right);
+        KeyboardEvent spacePress = new KeyboardEvent();
+        spacePress.setKey(KeyboardEvent.KEY_SPACE);
+        spacePress.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+
+        keyboard.addEventListener(leftPress);
+        keyboard.addEventListener(rightPress);
+        keyboard.addEventListener(spacePress);
+
     }
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
 
         switch (keyboardEvent.getKey()) {
+
             case KeyboardEvent.KEY_LEFT:
                 player.move(Direction.LEFT);
                 break;
             case KeyboardEvent.KEY_RIGHT:
                 player.move(Direction.RIGHT);
                 break;
-
+            case KeyboardEvent.KEY_SPACE:
+                System.out.println("space");
+                break;
         }
     }
 

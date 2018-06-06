@@ -1,5 +1,6 @@
 package org.academiadecodigo.bootcamp;
 
+import org.academiadecodigo.bootcamp.Movable.Direction;
 import org.academiadecodigo.bootcamp.Movable.Player;
 import org.academiadecodigo.bootcamp.Throwable.Throwable;
 import org.academiadecodigo.bootcamp.Throwable.ThrowableFactory;
@@ -30,6 +31,7 @@ public class Game {
         thrower = new Thrower();
 
         score = new Score();
+
     }
 
     public void start() {

@@ -1,16 +1,19 @@
 package org.academiadecodigo.bootcamp.Movable;
 
 import org.academiadecodigo.bootcamp.Controllers.SGFXKeyboard;
+import org.academiadecodigo.bootcamp.Game;
 import org.academiadecodigo.bootcamp.Position.Position;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Player extends AbstractMovable {
-    private Position position;
+    public Position position;
     private int score = 0;
     private int health = 3;
-    private int velocity = 100;
+    private int velocity = 30;
     private String url = "plate.png";
-    Picture picture;
+    private Picture picture;
+    int x;
+    int y;
 
     public Player(int xPos, int yPos) {
         super(xPos, yPos);
@@ -22,16 +25,7 @@ public class Player extends AbstractMovable {
         sgfxKeyboard.initKeyboard(this);
     }
 
-    @Override
-    public void move(Direction direction) {
-        int prevPosition = position.getX();
 
-        super.move(direction, velocity);
-
-        int newPosition = position.getX();
-
-        picture.translate(newPosition - prevPosition, 0);
-    }
 
     public void setScore(int score) {
         this.score = score;

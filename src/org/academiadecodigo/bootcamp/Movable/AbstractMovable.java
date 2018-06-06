@@ -13,9 +13,45 @@ public abstract class AbstractMovable implements Movable {
     private Picture picture;
     private int height;
     private int width;
+    private int velocity = 30;
+    int x;
+    int y;
 
     public AbstractMovable(int posX, int posY) {
         position = new Position(posX, posY);
+    }
+
+    public void move(Direction direction) {
+
+        x = position.getX();
+
+        switch (direction) {
+            case LEFT:
+                if (position.getX() - velocity < 210){
+                    x = 210;
+                    position.setX(x);
+                    break;
+                }
+                x = x - velocity;
+                position.setX(x + velocity);
+                break;
+            case RIGHT:
+                if (position.getX() + velocity > Game.stage.getMaxX() - picture.getWidth()){
+                    x = Game.stage.getMaxX() - picture.getWidth();
+                    position.setX(x);
+                    break;
+                }
+                x = x + velocity;
+                position.setX(x - velocity);
+                break;
+        }
+        picture.translate(x - position.getX(), 0);
+        position.setX(x);
+
+        System.out.println(position.getX());
+        System.out.println(picture.getX());
+
+
     }
 
     @Override
@@ -41,26 +77,4 @@ public abstract class AbstractMovable implements Movable {
         return width;
     }
 
-    @Override
-    public void move(Direction direction, int velocity) {
-        switch (direction) {
-            case LEFT:
-                for (int i = 0; i < velocity; i++) {
-                    if (position.getX() <= 210) {
-                        break;
-                    }
-                    position.setX(position.getX() - 1);
-                }
-                break;
-
-            case RIGHT:
-                for (int i = 0; i < velocity; i++) {
-                    if (position.getX() >= Game.stage.getMaxX() - picture.getWidth()) {
-                        break;
-                    }
-                    position.setX(position.getX() + 1);
-                }
-                break;
-        }
-    }
 }
