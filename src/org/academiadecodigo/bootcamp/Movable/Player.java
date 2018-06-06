@@ -25,8 +25,6 @@ public class Player extends AbstractMovable {
         sgfxKeyboard.initKeyboard(this);
     }
 
-
-
     public void setScore(int score) {
         this.score = score;
     }

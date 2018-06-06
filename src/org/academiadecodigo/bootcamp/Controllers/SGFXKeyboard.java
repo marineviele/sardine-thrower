@@ -1,5 +1,6 @@
 package org.academiadecodigo.bootcamp.Controllers;
 
+import org.academiadecodigo.bootcamp.Game;
 import org.academiadecodigo.bootcamp.Movable.Direction;
 import org.academiadecodigo.bootcamp.Movable.Player;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
@@ -27,9 +28,14 @@ public class SGFXKeyboard implements KeyboardHandler {
         spacePress.setKey(KeyboardEvent.KEY_SPACE);
         spacePress.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
+        KeyboardEvent sPress = new KeyboardEvent();
+        sPress.setKey(KeyboardEvent.KEY_S);
+        sPress.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+
         keyboard.addEventListener(leftPress);
         keyboard.addEventListener(rightPress);
         keyboard.addEventListener(spacePress);
+        keyboard.addEventListener(sPress);
 
     }
 
@@ -45,7 +51,13 @@ public class SGFXKeyboard implements KeyboardHandler {
                 player.move(Direction.RIGHT);
                 break;
             case KeyboardEvent.KEY_SPACE:
-                System.out.println("space");
+                if (!Game.start) {
+                    Game.start = true;
+                }
+                break;
+            case KeyboardEvent.KEY_S:
+                Game.restart = true;
+                Game.start = false;
                 break;
         }
     }
