@@ -37,7 +37,7 @@ public class Player extends AbstractMovable {
         this.score = score;
     }
 
-    public void setHealth() {
+    public void decreaseHealth() {
         health--;
     }
 

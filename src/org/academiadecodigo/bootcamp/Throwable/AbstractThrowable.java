@@ -22,6 +22,7 @@ public abstract class AbstractThrowable implements Throwable {
         try {
             if (y >= Game.stage.getMaxY() - picture.getHeight() - 10) {
                 picture.delete();
+                Game.player.decreaseHealth();
                 Sound.play("missedCatch.wav");
                 setOnFloor(true);
                 setOnAir(false);

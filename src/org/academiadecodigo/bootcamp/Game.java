@@ -42,7 +42,7 @@ public class Game {
         }
 
         for(int i = 0; i < throwables.length; i++) {
-            while (throwables[i].getOnAir()) {
+            while (throwables[i].getOnAir() && player.getHealth() > 0) {
                 thrower.sendThrowable(throwables[i]);
                 if(CatchDectector.catchChecker(throwables[i], player)) {
                     throwables[i].setOnAir(false);
@@ -50,5 +50,6 @@ public class Game {
                 }
             }
         }
+        EndGame.displayModal();
     }
 }
