@@ -12,7 +12,7 @@ public abstract class AbstractMovable implements Movable {
     private int width;
 
     private int velocity = 5;
-    private Direction direction;
+    private Direction direction = Direction.NODIRECTION;
 
     int x;
     int y;

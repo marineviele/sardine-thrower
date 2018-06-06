@@ -67,11 +67,18 @@ public class Game {
 
         for (int i = 0; i < throwables.length; i++) {
             while (throwables[i].getOnAir() && player.getHealth() > 0 && start) {
+                try {
+                    Thread.sleep(5);
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+
                 thrower.sendThrowable(throwables[i]);
                 if (CatchDectector.catchChecker(throwables[i], player)) {
                     throwables[i].setOnAir(false);
                     score.incrementScore();
                 }
+                
                 player.move();
             }
         }
@@ -79,7 +86,7 @@ public class Game {
         if (start) {
             EndGame.displayModal();
 
-            while(!restart) {
+            while (!restart) {
                 try {
                     Thread.sleep(1000);
                 } catch (Exception e) {

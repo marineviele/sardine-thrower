@@ -19,7 +19,7 @@ public abstract class AbstractThrowable implements Throwable {
         int x = position.getX();
         int y = position.getY();
 
-        Thread thread = new Thread();
+        //Thread thread = new Thread();
 
         try {
             if (y >= Game.stage.getMaxY() - picture.getHeight() - 10) {
@@ -36,7 +36,7 @@ public abstract class AbstractThrowable implements Throwable {
 
             y = y + (vy * t / 1000) + (10 * (t / 1000) * (t / 1000) / 2);
 
-            thread.sleep(5);
+            //thread.sleep(5);
 
             picture.translate(x - position.getX(), y - position.getY());
 
