@@ -13,7 +13,7 @@ public abstract class AbstractMovable implements Movable {
     private Picture picture;
     private int height;
     private int width;
-    private int velocity = 75;
+    private int velocity = 60;
     int x;
     int y;
 
@@ -28,8 +28,6 @@ public abstract class AbstractMovable implements Movable {
         switch (direction) {
             case LEFT:
                 if (position.getX() - velocity < 200){
-                    x = 200;
-                    position.setX(x);
                     break;
                 }
                 x = x - velocity;
@@ -38,8 +36,6 @@ public abstract class AbstractMovable implements Movable {
 
             case RIGHT:
                 if (position.getX() + velocity > Game.stage.getMaxX() - picture.getWidth()){
-                    x = Game.stage.getMaxX() - picture.getWidth()-15;
-                    position.setX(x);
                     break;
                 }
                 x = x + velocity;
