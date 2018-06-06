@@ -24,30 +24,33 @@ public abstract class AbstractMovable implements Movable {
     public void move(Direction direction) {
 
         x = position.getX();
+        int tempVelocity = velocity;
 
         switch (direction) {
             case LEFT:
-                if (position.getX() - velocity < 200){
+                if (x - tempVelocity < 210){
+                    tempVelocity = x - 210;
+                    x = 210;
                     break;
                 }
-                x = x - velocity;
-                position.setX(x + velocity);
+                x = x - tempVelocity;
                 break;
 
             case RIGHT:
-                if (position.getX() + velocity > Game.stage.getMaxX() - picture.getWidth()){
+                if (x + tempVelocity > Game.stage.getMaxX() - picture.getWidth()){
+                    tempVelocity = x + Game.stage.getWidth() - Game.player.getWidth();
+                    x = Game.stage.getWidth() - Game.player.getWidth();
                     break;
                 }
-                x = x + velocity;
-                position.setX(x - velocity);
+                x = x + tempVelocity;
                 break;
         }
+        System.out.println(velocity);
+        System.out.println(tempVelocity);
 
         picture.translate(x - position.getX(), 0);              //SFGX
         position.setX(x);
 
-        System.out.println(position.getX());
-        System.out.println(picture.getX());
     }
 
     @Override
