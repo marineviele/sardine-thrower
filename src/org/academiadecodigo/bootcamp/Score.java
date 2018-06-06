@@ -3,17 +3,17 @@ package org.academiadecodigo.bootcamp;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Text;
 
-/**
- * Created by codecadet on 05/06/2018.
- */
 public class Score {
-
     private Integer score;
+    private Integer health;
     private String scoreText;
-    private Text text;
+    private String healthText;
+    private Text textScore;
+    private Text textHealth;
 
     public Score(){
         score = 0;
+        health = Game.player.getHealth();
         displayScore();
     }
 
@@ -24,19 +24,36 @@ public class Score {
     public void incrementScore(){
         score++;
         scoreToString();
-        text.draw();
+        textScore.draw();
+    }
+
+    public void decreaseHealth(){
+        health--;
+        healthToString();
+        textHealth.draw();
     }
 
     public void displayScore(){
-        text = new Text(50, 30, "");
+        textScore = new Text(50, 30, "");
         scoreToString();
-        text.setColor(Color.WHITE);
-        text.grow(30,20);
-        text.draw();
+        textScore.setColor(Color.WHITE);
+        textScore.grow(30,20);
+        textScore.draw();
+
+        textHealth = new Text(50, 75, "");
+        healthToString();
+        textHealth.setColor(Color.WHITE);
+        textHealth.grow(30,20);
+        textHealth.draw();
     }
 
     private void scoreToString(){
         scoreText = score.toString();
-        text.setText("Score: " + scoreText);
+        textScore.setText("Score: " + scoreText);
+    }
+
+    private void healthToString(){
+        healthText = health.toString();
+        textHealth.setText("Health: " + healthText);
     }
 }

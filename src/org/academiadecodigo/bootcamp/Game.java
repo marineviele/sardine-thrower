@@ -13,7 +13,7 @@ public class Game {
     public static boolean start;
     public static boolean restart;
     private Throwable[] throwables;
-    private Score score;
+    public static Score score;
     private int numThrowers;
 
     public Game() {
