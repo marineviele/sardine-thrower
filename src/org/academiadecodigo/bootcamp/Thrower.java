@@ -13,8 +13,6 @@ public class Thrower {
     }
 
     public void sendThrowable(Throwable throwable) {
-        //throwable.setVx(1500);
-        //throwable.setVy(-3600);
         throwable.move();
     }
 }

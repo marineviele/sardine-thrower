@@ -4,6 +4,6 @@ public class Main {
     public static void main(String[] args) {
         Game game = new Game();
 
-        game.startGame(20);
+        game.startGame(10);
     }
 }

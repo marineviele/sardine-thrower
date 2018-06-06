@@ -28,9 +28,9 @@ public interface Throwable {
 
     float getVx();
 
-    void setVx(float vx);
+    void setVx(int vx);
 
     float getVy();
 
-    void setVy(float vy);
+    void setVy(int vy);
 }

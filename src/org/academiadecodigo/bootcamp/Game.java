@@ -35,7 +35,7 @@ public class Game {
 
         score = new Score();
 
-        startScreen = new Picture(10, 10, "background2.jpg");
+        startScreen = new Picture(10, 10, "startScreen.jpg");
         startScreen.draw();
     }
 

@@ -10,9 +10,9 @@ public abstract class AbstractThrowable implements Throwable {
     private boolean onFloor = false;
     private Position position;
     private Picture picture;
-    private float vx = 1500;
-    private float vy = -3600;
-    private long t = 2;
+    private int vx;
+    private int vy = -3400;
+    private int t = 2;
 
     @Override
     public void move() {
@@ -31,9 +31,9 @@ public abstract class AbstractThrowable implements Throwable {
                 return;
             }
 
-            x = x + (int) (vx * t / 1000);
+            x = x + (vx * t / 1000);
 
-            y = y + (int) (vy * t / 1000) + (int) (10 * (t / 1000) * (t / 1000) / 2);
+            y = y + (vy * t / 1000) + (10 * (t / 1000) * (t / 1000) / 2);
 
             thread.sleep(5);
 
@@ -54,7 +54,7 @@ public abstract class AbstractThrowable implements Throwable {
     }
 
     @Override
-    public void setVx(float vx) {
+    public void setVx(int vx) {
         this.vx = vx;
     }
 
@@ -64,7 +64,7 @@ public abstract class AbstractThrowable implements Throwable {
     }
 
     @Override
-    public void setVy(float vy) {
+    public void setVy(int vy) {
         this.vy = vy;
     }
 

@@ -28,14 +28,14 @@ public class SGFXKeyboard implements KeyboardHandler {
         spacePress.setKey(KeyboardEvent.KEY_SPACE);
         spacePress.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
-        KeyboardEvent sPress = new KeyboardEvent();
-        sPress.setKey(KeyboardEvent.KEY_S);
-        sPress.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        KeyboardEvent rPress = new KeyboardEvent();
+        rPress.setKey(KeyboardEvent.KEY_R);
+        rPress.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
         keyboard.addEventListener(leftPress);
         keyboard.addEventListener(rightPress);
         keyboard.addEventListener(spacePress);
-        keyboard.addEventListener(sPress);
+        keyboard.addEventListener(rPress);
 
     }
 
@@ -55,7 +55,7 @@ public class SGFXKeyboard implements KeyboardHandler {
                     Game.start = true;
                 }
                 break;
-            case KeyboardEvent.KEY_S:
+            case KeyboardEvent.KEY_R:
                 Game.restart = true;
                 Game.start = false;
                 break;
