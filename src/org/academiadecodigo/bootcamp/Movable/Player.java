@@ -11,7 +11,7 @@ public class Player extends AbstractMovable {
     private int health = 3;
     private int velocity = 30;
     private String url = "plate.png";
-    Picture picture;
+    private Picture picture;
     int x;
     int y;
 
@@ -25,47 +25,13 @@ public class Player extends AbstractMovable {
         sgfxKeyboard.initKeyboard(this);
     }
 
-    //@Override
-    public void move(Direction direction) {
 
-        x = position.getX();
-
-            switch (direction) {
-                case LEFT:
-                    if (position.getX() - velocity < 210){
-                        x = 210;
-                        position.setX(x);
-                        break;
-                    }
-                    x = x - velocity;
-                    position.setX(x + velocity);
-                    break;
-                case RIGHT:
-                    if (position.getX() + velocity > Game.stage.getMaxX() - picture.getWidth()){
-                        x = Game.stage.getMaxX() - picture.getWidth();
-                        position.setX(x);
-                        break;
-                    }
-                    x = x + velocity;
-                    position.setX(x - velocity);
-                    break;
-                case NODIRECTION:
-                    break;
-            }
-            picture.translate(x - position.getX(), 0);
-            position.setX(x);
-
-        System.out.println(position.getX());
-        System.out.println(picture.getX());
-
-
-    }
 
     public void setScore(int score) {
         this.score = score;
     }
 
-    public void setHealth() {
+    public void decreaseHealth() {
         health--;
     }
 

@@ -23,18 +23,14 @@ public class SGFXKeyboard implements KeyboardHandler {
         rightPress.setKey(KeyboardEvent.KEY_RIGHT);
         rightPress.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
-        KeyboardEvent leftRelease = new KeyboardEvent();
-        leftRelease.setKey(KeyboardEvent.KEY_LEFT);
-        leftRelease.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
-
-        KeyboardEvent rightRelease = new KeyboardEvent();
-        rightRelease.setKey(KeyboardEvent.KEY_RIGHT);
-        rightRelease.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
+        KeyboardEvent spacePress = new KeyboardEvent();
+        spacePress.setKey(KeyboardEvent.KEY_SPACE);
+        spacePress.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
         keyboard.addEventListener(leftPress);
         keyboard.addEventListener(rightPress);
-        keyboard.addEventListener(leftRelease);
-        keyboard.addEventListener(rightRelease);
+        keyboard.addEventListener(spacePress);
+
     }
 
     @Override
@@ -43,12 +39,13 @@ public class SGFXKeyboard implements KeyboardHandler {
         switch (keyboardEvent.getKey()) {
 
             case KeyboardEvent.KEY_LEFT:
-                player.setDirection(Direction.LEFT);
                 player.move(Direction.LEFT);
                 break;
             case KeyboardEvent.KEY_RIGHT:
-                player.setDirection(Direction.RIGHT);
                 player.move(Direction.RIGHT);
+                break;
+            case KeyboardEvent.KEY_SPACE:
+                System.out.println("space");
                 break;
         }
     }
@@ -56,14 +53,5 @@ public class SGFXKeyboard implements KeyboardHandler {
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
 
-        switch (keyboardEvent.getKey()) {
-
-            case KeyboardEvent.KEY_LEFT:
-                player.setDirection(Direction.NODIRECTION);
-                break;
-            case KeyboardEvent.KEY_RIGHT:
-                player.setDirection(Direction.NODIRECTION);
-                break;
-        }
     }
 }
