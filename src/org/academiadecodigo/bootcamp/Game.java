@@ -72,6 +72,7 @@ public class Game {
                     throwables[i].setOnAir(false);
                     score.incrementScore();
                 }
+                player.move();
             }
         }
 

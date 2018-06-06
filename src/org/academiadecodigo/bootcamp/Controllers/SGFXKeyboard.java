@@ -24,6 +24,14 @@ public class SGFXKeyboard implements KeyboardHandler {
         rightPress.setKey(KeyboardEvent.KEY_RIGHT);
         rightPress.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
+        KeyboardEvent leftReleased = new KeyboardEvent();
+        leftReleased.setKey(KeyboardEvent.KEY_LEFT);
+        leftReleased.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
+
+        KeyboardEvent rightReleased = new KeyboardEvent();
+        rightReleased.setKey(KeyboardEvent.KEY_RIGHT);
+        rightReleased.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
+
         KeyboardEvent spacePress = new KeyboardEvent();
         spacePress.setKey(KeyboardEvent.KEY_SPACE);
         spacePress.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
@@ -36,6 +44,8 @@ public class SGFXKeyboard implements KeyboardHandler {
         keyboard.addEventListener(rightPress);
         keyboard.addEventListener(spacePress);
         keyboard.addEventListener(rPress);
+        keyboard.addEventListener(leftReleased);
+        keyboard.addEventListener(rightReleased);
 
     }
 
@@ -45,10 +55,10 @@ public class SGFXKeyboard implements KeyboardHandler {
         switch (keyboardEvent.getKey()) {
 
             case KeyboardEvent.KEY_LEFT:
-                player.move(Direction.LEFT);
+                player.setDirection(Direction.LEFT);
                 break;
             case KeyboardEvent.KEY_RIGHT:
-                player.move(Direction.RIGHT);
+                player.setDirection(Direction.RIGHT);
                 break;
             case KeyboardEvent.KEY_SPACE:
                 if (!Game.start) {
@@ -64,6 +74,8 @@ public class SGFXKeyboard implements KeyboardHandler {
 
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
+
+        player.setDirection(Direction.NODIRECTION);
 
     }
 }

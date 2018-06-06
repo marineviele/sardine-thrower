@@ -13,7 +13,8 @@ public abstract class AbstractMovable implements Movable {
     private Picture picture;
     private int height;
     private int width;
-    private int velocity = 60;
+    private int velocity = 5;
+    private Direction direction;
     int x;
     int y;
 
@@ -21,7 +22,11 @@ public abstract class AbstractMovable implements Movable {
         position = new Position(posX, posY);
     }
 
-    public void move(Direction direction) {
+    public void setDirection(Direction direction){
+        this.direction = direction;
+    }
+
+    public void move() {
 
         x = position.getX();
         int tempVelocity = velocity;
@@ -44,9 +49,13 @@ public abstract class AbstractMovable implements Movable {
                 }
                 x = x + tempVelocity;
                 break;
+                
+            case NODIRECTION:
+                break;
         }
         System.out.println(velocity);
         System.out.println(tempVelocity);
+
 
         picture.translate(x - position.getX(), 0);              //SFGX
         position.setX(x);
