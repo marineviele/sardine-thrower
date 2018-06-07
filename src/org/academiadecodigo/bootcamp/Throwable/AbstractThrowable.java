@@ -19,31 +19,26 @@ public abstract class AbstractThrowable implements Throwable {
         int x = position.getX();
         int y = position.getY();
 
-        try {
-            if (y >= Game.stage.getMaxY() - picture.getHeight() - 10) {
-                picture.delete();
-                Game.score.decreaseHealth();
-                Game.player.decreaseHealth();
-                Sound.play("missedCatch.wav");
-                setOnFloor(true);
-                setOnAir(false);
-                return;
-            }
-
-            x = x + (vx * t / 1000);
-
-            y = y + (vy * t / 1000) + (10 * (t / 1000) * (t / 1000) / 2);
-
-            picture.translate(x - position.getX(), y - position.getY());
-
-            position.setX(x);
-            position.setY(y);
-
-            vy = vy + 10 * t;
-
-        } catch (Exception e) {
-            System.out.println(e);
+        if (y >= Game.stage.getMaxY() - picture.getHeight() - 10) {
+            picture.delete();
+            Game.score.decreaseHealth();
+            Game.player.decreaseHealth();
+            Sound.play("missedCatch.wav");
+            setOnFloor(true);
+            setOnAir(false);
+            return;
         }
+
+        x = x + (vx * t / 1000);
+
+        y = y + (vy * t / 1000) + (10 * (t / 1000) * (t / 1000) / 2);
+
+        picture.translate(x - position.getX(), y - position.getY());
+
+        position.setX(x);
+        position.setY(y);
+
+        vy = vy + 10 * t;
     }
 
     @Override
