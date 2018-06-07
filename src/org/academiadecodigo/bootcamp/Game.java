@@ -1,6 +1,9 @@
 package org.academiadecodigo.bootcamp;
 
 import org.academiadecodigo.bootcamp.Movable.Player;
+import org.academiadecodigo.bootcamp.Position.Position;
+import org.academiadecodigo.bootcamp.Throwable.Poo;
+import org.academiadecodigo.bootcamp.Throwable.Sardine;
 import org.academiadecodigo.bootcamp.Throwable.Throwable;
 import org.academiadecodigo.bootcamp.Throwable.ThrowableFactory;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
@@ -15,6 +18,7 @@ public class Game {
     private Throwable[] throwables;
     public static Score score;
     private int numThrowers;
+    private Poo poo;
 
     public Game() {
     }
@@ -34,6 +38,8 @@ public class Game {
         thrower = new Thrower();
 
         score = new Score();
+
+        poo = new Poo();
 
         startScreen = new Picture(10, 10, "startScreen.jpg");
         startScreen.draw();
@@ -67,8 +73,12 @@ public class Game {
             System.out.println(e);
         }
 
-        for (int i = 0; i < throwables.length - 2; i++) {
+        for (int i = 0; i < throwables.length - 1; i++) {
             while (throwables[i].getOnAir() && player.getHealth() > 0 && start) {
+                if(!poo.getOnAir()) {
+                    poo = new Poo();
+                }
+
                 try {
                     Thread.sleep(5);
                 } catch (Exception e) {
@@ -99,6 +109,13 @@ public class Game {
                     }
                 }
                 */
+
+                poo.move();
+                if (CatchDectector.catchChecker(poo, player)) {
+                    poo.setOnAir(false);
+                    //System.out.println("POO!!!");
+                    //score.incrementScore();
+                }
 
                 player.move();
                 throwDelay++;
