@@ -59,13 +59,15 @@ public class Game {
     }
 
     public void start() {
+        int throwDelay = 0;
+
         try {
             Thread.sleep(1000);
         } catch (Exception e) {
             System.out.println(e);
         }
 
-        for (int i = 0; i < throwables.length; i++) {
+        for (int i = 0; i < throwables.length - 2; i++) {
             while (throwables[i].getOnAir() && player.getHealth() > 0 && start) {
                 try {
                     Thread.sleep(5);
@@ -74,12 +76,32 @@ public class Game {
                 }
 
                 thrower.sendThrowable(throwables[i]);
+
                 if (CatchDectector.catchChecker(throwables[i], player)) {
                     throwables[i].setOnAir(false);
                     score.incrementScore();
                 }
-                
+
+                if (throwDelay > 150) {
+                    thrower.sendThrowable(throwables[i + 1]);
+                    if (CatchDectector.catchChecker(throwables[i + 1], player)) {
+                        throwables[i + 1].setOnAir(false);
+                        score.incrementScore();
+                    }
+                }
+
+                /*
+                if (throwDelay > 300) {
+                    thrower.sendThrowable(throwables[i + 2]);
+                    if (CatchDectector.catchChecker(throwables[i + 2], player)) {
+                        throwables[i + 2].setOnAir(false);
+                        score.incrementScore();
+                    }
+                }
+                */
+
                 player.move();
+                throwDelay++;
             }
         }
 

@@ -8,8 +8,8 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class Player extends AbstractMovable {
     public Position position;
     private int score = 0;
-    private int health = 3;
-    private int velocity = 10;
+    private int health = 5;
+    private int velocity;
     private String url = "plate.png";
     private Picture picture;                                //SFGX
     int x;

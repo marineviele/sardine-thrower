@@ -19,8 +19,6 @@ public abstract class AbstractThrowable implements Throwable {
         int x = position.getX();
         int y = position.getY();
 
-        //Thread thread = new Thread();
-
         try {
             if (y >= Game.stage.getMaxY() - picture.getHeight() - 10) {
                 picture.delete();
@@ -36,17 +34,22 @@ public abstract class AbstractThrowable implements Throwable {
 
             y = y + (vy * t / 1000) + (10 * (t / 1000) * (t / 1000) / 2);
 
-            //thread.sleep(5);
-
             picture.translate(x - position.getX(), y - position.getY());
 
             position.setX(x);
             position.setY(y);
 
             vy = vy + 10 * t;
+
         } catch (Exception e) {
             System.out.println(e);
         }
+    }
+
+    @Override
+    public void setPicture(Picture picture) {
+        this.picture = picture;
+        picture.draw();
     }
 
     @Override
@@ -77,12 +80,6 @@ public abstract class AbstractThrowable implements Throwable {
     @Override
     public int getWidth() {
         return picture.getWidth();
-    }
-
-    @Override
-    public void setPicture(Picture picture) {
-        this.picture = picture;
-        picture.draw();
     }
 
     @Override
