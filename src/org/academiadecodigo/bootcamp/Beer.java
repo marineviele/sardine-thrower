@@ -12,27 +12,26 @@ public class Beer {
     private Position position;
 
     public Beer() {
-        picture = new Picture(0, 0, "thrower.png");         // move to SGFX
-        picture.translate(250, Game.stage.getMaxY() - picture.getHeight());
-        picture.draw();
+        picture = new Picture(0, 0, "thrower.png");
+        position = new Position(0,Game.stage.getMaxY() - picture.getHeight());
+        picture.translate(0, position.getY());
+
     }
 
     public int getPosition() {
         return position.getX();
     }
 
-    public void setPosition(int x) {
-        position.setX(x);
+    public void setPosition() {
+        position.setX((int)((Math.random() * (1200 - 300) + 300)));
     }
 
-    public void show(){
-        picture.translate(getPosition() - picture.getX(), 0);
+    public void show() {
         picture.draw();
     }
 
     public void hide(){
         picture.delete();
     }
-
 
 }
