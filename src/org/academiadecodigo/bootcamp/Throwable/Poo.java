@@ -34,6 +34,7 @@ public class Poo extends AbstractThrowable {
             vy = 0;
             onFloor = true;
             onAir = false;
+            Game.throwedPoos++;
             return;
         }
 

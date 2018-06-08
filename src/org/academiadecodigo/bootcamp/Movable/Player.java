@@ -1,14 +1,13 @@
 package org.academiadecodigo.bootcamp.Movable;
 
 import org.academiadecodigo.bootcamp.Controllers.SGFXKeyboard;
-import org.academiadecodigo.bootcamp.Game;
 import org.academiadecodigo.bootcamp.Position.Position;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Player extends AbstractMovable {
     public Position position;
     private int score = 0;
-    private int health = 15;
+    private int health = 5;
     private int velocity;
     private String url = "plate.png";
     private Picture picture;                                //SFGX

@@ -11,29 +11,24 @@ public class CatchDectector {
         int playerMiddleX = (player.getPosition().getX() + player.getWidth()) / 2;
         int throwableMiddleX = (throwable.getPosition().getX() + throwable.getWidth()) / 2;
 
+        if (throwable instanceof Poo) {
+            if (throwableMaxY > playerY &&
+                    throwableMiddleX > playerMiddleX - 50 &&
+                    throwableMiddleX < playerMiddleX + 20) {
+
+                throwable.getPicture().delete();
+                Sound.play("poo.wav");
+                return true;
+            }
+            return false;
+        }
+
         if (throwableMaxY > playerY &&
                 throwableMiddleX > playerMiddleX - 20 &&
                 throwableMiddleX < playerMiddleX + 20) {
 
             Sound.play("catch.wav");            //SFGX
             throwable.getPicture().delete();                //SFGX
-            return true;
-        }
-        return false;
-    }
-
-    public static boolean catchChecker(Poo poo, Player player) {
-        int playerY = player.getPosition().getY();
-        int playerMiddleX = (player.getPosition().getX() + player.getWidth()) / 2;
-        int pooMaxY = poo.getPosition().getY() + poo.getHeight();
-        int pooMiddleX = (poo.getPosition().getX() + poo.getWidth()) / 2;
-
-        if (pooMaxY > playerY &&
-                pooMiddleX > playerMiddleX - 20 &&
-                pooMiddleX < playerMiddleX + 20) {
-
-            Sound.play("poo.wav");
-            poo.getPicture().delete();                //SFGX
             return true;
         }
         return false;

@@ -1,9 +1,7 @@
 package org.academiadecodigo.bootcamp;
 
 import org.academiadecodigo.bootcamp.Movable.Player;
-import org.academiadecodigo.bootcamp.Position.Position;
 import org.academiadecodigo.bootcamp.Throwable.Poo;
-import org.academiadecodigo.bootcamp.Throwable.Sardine;
 import org.academiadecodigo.bootcamp.Throwable.Throwable;
 import org.academiadecodigo.bootcamp.Throwable.ThrowableFactory;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
@@ -17,8 +15,11 @@ public class Game {
     public static boolean restart;
     private Throwable[] throwables;
     public static Score score;
-    private int numThrowers;
-    private Poo poo;
+    private int numThrowables;
+
+    private Throwable[] poos;
+    public static int throwedPoos = 0;
+
 
     public Game() {
     }
@@ -33,13 +34,17 @@ public class Game {
             throwables[i] = ThrowableFactory.createThrowable();
         }
 
+        poos = new Poo[numThrowables];
+
+        for (int i = 0; i < numThrowables; i++) {
+            poos[i] = new Poo();
+        }
+
         player = new Player(stage.getWidth() / 2, 650);
 
         thrower = new Thrower();
 
         score = new Score();
-
-        poo = new Poo();
 
         startScreen = new Picture(10, 10, "startScreen.jpg");
         startScreen.draw();
@@ -48,7 +53,7 @@ public class Game {
     public void startGame(int numThrowables) {
         restart = false;
 
-        this.numThrowers = numThrowables;
+        this.numThrowables = numThrowables;
 
         init(numThrowables);
 
@@ -66,6 +71,7 @@ public class Game {
 
     public void start() {
         int throwDelay = 0;
+        throwedPoos = 0;
 
         try {
             Thread.sleep(1000);
@@ -75,10 +81,6 @@ public class Game {
 
         for (int i = 0; i < throwables.length - 1; i++) {
             while (throwables[i].getOnAir() && player.getHealth() > 0 && start) {
-                if(!poo.getOnAir()) {
-                    poo = new Poo();
-                }
-
                 try {
                     Thread.sleep(5);
                 } catch (Exception e) {
@@ -110,11 +112,14 @@ public class Game {
                 }
                 */
 
-                poo.move();
-                if (CatchDectector.catchChecker(poo, player)) {
-                    poo.setOnAir(false);
-                    //System.out.println("POO!!!");
-                    //score.incrementScore();
+                if (throwDelay > 300) {
+                    poos[throwedPoos].move();
+                    if (CatchDectector.catchChecker(poos[throwedPoos], player)) {
+                        poos[throwedPoos].setOnAir(false);
+                        Game.score.decreaseHealth();
+                        Game.player.decreaseHealth();
+                        throwedPoos++;
+                    }
                 }
 
                 player.move();
@@ -132,7 +137,7 @@ public class Game {
                     System.out.println(e);
                 }
             }
-            startGame(numThrowers);
+            startGame(numThrowables);
         }
     }
 }
