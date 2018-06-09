@@ -93,9 +93,9 @@ public class SGFXKeyboard implements KeyboardHandler {
         keyboard.removeEventListener(rPress);
         keyboard.removeEventListener(pPress);
         keyboard.removeEventListener(cPress);
-        keyboard.addEventListener(onePress);
-        keyboard.addEventListener(twoPress);
-        keyboard.addEventListener(threePress);
+        keyboard.removeEventListener(onePress);
+        keyboard.removeEventListener(twoPress);
+        keyboard.removeEventListener(threePress);
     }
 
 
