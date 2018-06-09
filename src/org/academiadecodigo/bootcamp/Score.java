@@ -2,12 +2,14 @@ package org.academiadecodigo.bootcamp;
 
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Text;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Score {
     private Integer score;
     private Integer health;
     private String scoreText;
     private String healthText;
+    private Picture scoreBar;
     private Text textScore;
     private Text textHealth;
 
@@ -34,17 +36,28 @@ public class Score {
     }
 
     public void displayScore(){
+
+        scoreBar = new Picture(10, 10, "scoreBar.jpg");
+        scoreBar.draw();
+
         textScore = new Text(50, 30, "");
         scoreToString();
         textScore.setColor(Color.WHITE);
         textScore.grow(30,20);
         textScore.draw();
 
-        textHealth = new Text(50, 75, "");
+        textHealth = new Text(200, 30, "");
         healthToString();
         textHealth.setColor(Color.WHITE);
         textHealth.grow(30,20);
         textHealth.draw();
+
+        try {
+            Thread.sleep(1000);
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private void scoreToString(){

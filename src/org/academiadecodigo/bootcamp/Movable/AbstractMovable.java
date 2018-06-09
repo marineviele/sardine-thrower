@@ -14,7 +14,7 @@ public abstract class AbstractMovable implements Movable {
     private int velocity = 9;
     private Direction direction = Direction.NODIRECTION;
 
-    int x;
+    int xPos;
     int y;
 
     public AbstractMovable(int posX, int posY) {
@@ -27,35 +27,37 @@ public abstract class AbstractMovable implements Movable {
 
     public void move() {
 
-        x = position.getX();
+        xPos = position.getX();
         int tempVelocity = velocity;
 
         switch (direction) {
             case LEFT:
-                if (x - tempVelocity < 210){
-                    tempVelocity = x - 210;
-                    x = 210;
+                if (xPos - tempVelocity < 210){
+                    tempVelocity = xPos - 210;
+                    xPos = 210 + tempVelocity;
                     break;
                 }
-                x = x - tempVelocity;
+                xPos = xPos - tempVelocity;
                 break;
 
             case RIGHT:
-                if (x + tempVelocity > Game.stage.getMaxX() - picture.getWidth()){
-                    tempVelocity = x + Game.stage.getWidth() - Game.player.getWidth();
-                    x = Game.stage.getWidth() - Game.player.getWidth();
+                if (xPos + tempVelocity > Game.stage.getMaxX() - picture.getWidth()){
+                    tempVelocity = Game.stage.getWidth() - Game.player.getWidth() - xPos;
+                    xPos = xPos + tempVelocity;
                     break;
                 }
-                x = x + tempVelocity;
+                xPos = xPos + tempVelocity;
                 break;
                 
             case NODIRECTION:
                 break;
         }
 
+        picture.translate(xPos - position.getX(), 0);              //SFGX
+        position.setX(xPos);
 
-        picture.translate(x - position.getX(), 0);              //SFGX
-        position.setX(x);
+        //System.out.println(xPos);
+        //System.out.println(position.getX());
     }
 
     @Override

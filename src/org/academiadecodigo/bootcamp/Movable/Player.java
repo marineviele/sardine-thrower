@@ -1,12 +1,12 @@
 package org.academiadecodigo.bootcamp.Movable;
 
 import org.academiadecodigo.bootcamp.Controllers.SGFXKeyboard;
-import org.academiadecodigo.bootcamp.Game;
 import org.academiadecodigo.bootcamp.Position.Position;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Player extends AbstractMovable {
     public Position position;
+    private SGFXKeyboard keyboard;
     private int score = 0;
     private int health = 5;
     private int velocity;
@@ -21,8 +21,12 @@ public class Player extends AbstractMovable {
         picture = new Picture(xPos, yPos, url);             //SFGX
         super.setPicture(picture);                          //SFGX
 
-        SGFXKeyboard sgfxKeyboard = new SGFXKeyboard();     //SFGX
-        sgfxKeyboard.initKeyboard(this);             //SFGX
+        keyboard = new SGFXKeyboard();     //SFGX
+        keyboard.initKeyboard(this);        //SFGX
+    }
+
+    public void endKeyboard() {
+        keyboard.endKeyboard();
     }
 
     public void setScore(int score) {
