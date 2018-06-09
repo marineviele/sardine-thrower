@@ -1,9 +1,8 @@
 package org.academiadecodigo.bootcamp;
 
 import org.academiadecodigo.bootcamp.Movable.Player;
-import org.academiadecodigo.bootcamp.Throwable.Poo;
+import org.academiadecodigo.bootcamp.Throwable.*;
 import org.academiadecodigo.bootcamp.Throwable.Throwable;
-import org.academiadecodigo.bootcamp.Throwable.ThrowableFactory;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Game {
@@ -17,8 +16,8 @@ public class Game {
     public static Score score;
     private int numThrowables;
 
-    private Throwable[] poos;
-    public static int throwedPoos = 0;
+    private Throwable[] dropables;
+    public static int dropedDropables = 0;
 
     public static boolean pause;
     public static boolean info;
@@ -43,10 +42,18 @@ public class Game {
             throwables[i] = ThrowableFactory.createThrowable();
         }
 
-        poos = new Poo[numThrowables];
+        dropables = new Throwable[numThrowables];
 
         for (int i = 0; i < numThrowables; i++) {
-            poos[i] = new Poo();
+            if(Math.random() < 0.45) {
+                dropables[i] = new Poo();
+                continue;
+            }
+            if(Math.random() < 0.75) {
+                dropables[i] = new Beer();
+                continue;
+            }
+            dropables[i] = new Guronsan();
         }
 
         player = new Player(stage.getWidth() / 2, 650);
@@ -87,17 +94,17 @@ public class Game {
                 }
 
                 if (easyMode) {
-                    refreshRate = 7;
+                    refreshRate = 9;
                     continue;
                 }
 
                 if (normalMode) {
-                    refreshRate = 5;
+                    refreshRate = 7;
                     continue;
                 }
 
                 if (insaneMode) {
-                    refreshRate = 4;
+                    refreshRate = 5;
                 }
 
             } catch (Exception e) {
@@ -111,7 +118,7 @@ public class Game {
 
     private void start() {
         int throwDelay = 0;
-        throwedPoos = 0;
+        dropedDropables = 0;
 
         try {
             Thread.sleep(1000);
@@ -158,13 +165,24 @@ public class Game {
                     }
                 }
 
-                if (throwDelay > 300) {
-                    poos[throwedPoos].move();
-                    if (CatchDectector.catchChecker(poos[throwedPoos], player)) {
-                        poos[throwedPoos].setOnAir(false);
-                        Game.score.decreaseHealth();
-                        Game.player.decreaseHealth();
-                        throwedPoos++;
+                if (throwDelay > 50) {
+                    dropables[dropedDropables].move();
+                    if (CatchDectector.catchChecker(dropables[dropedDropables], player)) {
+                        dropables[dropedDropables].setOnAir(false);
+                        if(dropables[dropedDropables] instanceof Poo) {
+                            Game.score.decreaseHealth();
+                            Game.player.decreaseHealth();
+                        }
+
+                        if(dropables[dropedDropables] instanceof Beer) {
+                            player.drink();
+                        }
+
+                        if(dropables[dropedDropables] instanceof Guronsan) {
+                            player.unDrink();
+                        }
+
+                        dropedDropables++;
                     }
                 }
 

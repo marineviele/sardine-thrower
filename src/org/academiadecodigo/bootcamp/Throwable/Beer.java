@@ -4,7 +4,7 @@ import org.academiadecodigo.bootcamp.Game;
 import org.academiadecodigo.bootcamp.Position.Position;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-public class Poo extends AbstractThrowable {
+public class Beer extends AbstractThrowable {
     private boolean onAir = true;
     private boolean onFloor = false;
     private Position position;
@@ -12,9 +12,9 @@ public class Poo extends AbstractThrowable {
     private int vy = 0;
     private int vx = 0;
     private int t = 2;
-    String url = "poo.png";
+    String url = "beer.png";
 
-    public Poo() {
+    public Beer() {
         super.setVx(vx);
 
         position = new Position(((int) (Math.random() * (1200 - 250) + 250)), 10);
