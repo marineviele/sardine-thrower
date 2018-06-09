@@ -10,67 +10,158 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
 public class SGFXKeyboard implements KeyboardHandler {
 
-    Player player;
+    private Player player;
+    private Keyboard keyboard;
+    private KeyboardEvent leftPress;
+    private KeyboardEvent rightPress;
+    private KeyboardEvent leftReleased;
+    private KeyboardEvent rightReleased;
+    private KeyboardEvent rPress;
+    private KeyboardEvent pPress;
+    private KeyboardEvent cPress;
+    private KeyboardEvent onePress;
+    private KeyboardEvent twoPress;
+    private KeyboardEvent threePress;
 
     public void initKeyboard(Player player) {
         this.player = player;
-        Keyboard keyboard = new Keyboard(this);
+        keyboard = new Keyboard(this);
 
-        KeyboardEvent leftPress = new KeyboardEvent();
+
+        //Movement
+        leftPress = new KeyboardEvent();
         leftPress.setKey(KeyboardEvent.KEY_LEFT);
         leftPress.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        keyboard.addEventListener(leftPress);
 
-        KeyboardEvent rightPress = new KeyboardEvent();
+        rightPress = new KeyboardEvent();
         rightPress.setKey(KeyboardEvent.KEY_RIGHT);
         rightPress.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        keyboard.addEventListener(rightPress);
 
-        KeyboardEvent leftReleased = new KeyboardEvent();
+        leftReleased = new KeyboardEvent();
         leftReleased.setKey(KeyboardEvent.KEY_LEFT);
         leftReleased.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
+        keyboard.addEventListener(leftReleased);
 
-        KeyboardEvent rightReleased = new KeyboardEvent();
+        rightReleased = new KeyboardEvent();
         rightReleased.setKey(KeyboardEvent.KEY_RIGHT);
         rightReleased.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
-
-        KeyboardEvent spacePress = new KeyboardEvent();
-        spacePress.setKey(KeyboardEvent.KEY_SPACE);
-        spacePress.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-
-        KeyboardEvent rPress = new KeyboardEvent();
-        rPress.setKey(KeyboardEvent.KEY_R);
-        rPress.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-
-        keyboard.addEventListener(leftPress);
-        keyboard.addEventListener(rightPress);
-        keyboard.addEventListener(spacePress);
-        keyboard.addEventListener(rPress);
-        keyboard.addEventListener(leftReleased);
         keyboard.addEventListener(rightReleased);
 
+
+        //Re-Start, Pause and Credits
+        rPress = new KeyboardEvent();
+        rPress.setKey(KeyboardEvent.KEY_R);
+        rPress.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        keyboard.addEventListener(rPress);
+
+        pPress = new KeyboardEvent();
+        pPress.setKey(KeyboardEvent.KEY_P);
+        pPress.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        keyboard.addEventListener(pPress);
+
+        cPress = new KeyboardEvent();
+        cPress.setKey(KeyboardEvent.KEY_C);
+        cPress.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        keyboard.addEventListener(cPress);
+
+
+        //Game level
+        onePress = new KeyboardEvent();
+        onePress.setKey(KeyboardEvent.KEY_1);
+        onePress.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        keyboard.addEventListener(onePress);
+
+        twoPress = new KeyboardEvent();
+        twoPress.setKey(KeyboardEvent.KEY_2);
+        twoPress.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        keyboard.addEventListener(twoPress);
+
+        threePress = new KeyboardEvent();
+        threePress.setKey(KeyboardEvent.KEY_3);
+        threePress.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        keyboard.addEventListener(threePress);
     }
+
+
+    public void endKeyboard() {
+        keyboard.removeEventListener(leftPress);
+        keyboard.removeEventListener(rightPress);
+        keyboard.removeEventListener(leftReleased);
+        keyboard.removeEventListener(rightReleased);
+        keyboard.removeEventListener(rPress);
+        keyboard.removeEventListener(pPress);
+        keyboard.removeEventListener(cPress);
+        keyboard.addEventListener(onePress);
+        keyboard.addEventListener(twoPress);
+        keyboard.addEventListener(threePress);
+    }
+
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
 
         switch (keyboardEvent.getKey()) {
 
+            //Movement
             case KeyboardEvent.KEY_LEFT:
                 player.setDirection(Direction.LEFT);
                 break;
             case KeyboardEvent.KEY_RIGHT:
                 player.setDirection(Direction.RIGHT);
                 break;
-            case KeyboardEvent.KEY_SPACE:
-                if (!Game.start) {
-                    Game.start = true;
-                }
-                break;
+
+
+            //Re-Start, Pause and Credits
             case KeyboardEvent.KEY_R:
                 Game.restart = true;
                 Game.start = false;
                 break;
+            case KeyboardEvent.KEY_P:
+                if(Game.start) {
+                    Game.pause = !Game.pause;
+                    break;
+                }
+                break;
+            case KeyboardEvent.KEY_C:
+                if(!Game.start) {
+                    Game.info = !Game.info;
+                    break;
+                }
+                break;
+
+
+            //Game level
+            case KeyboardEvent.KEY_1:
+                if(!Game.start) {
+                    Game.start = true;
+                    Game.easyMode = true;
+                    Game.normalMode = false;
+                    Game.insaneMode = false;
+                    break;
+                }
+                break;
+            case KeyboardEvent.KEY_2:
+                if(!Game.start) {
+                    Game.start = true;
+                    Game.easyMode = false;
+                    Game.normalMode = true;
+                    Game.insaneMode = false;
+                    break;
+                }
+                break;
+            case KeyboardEvent.KEY_3:
+                if(!Game.start) {
+                    Game.start = true;
+                    Game.easyMode = false;
+                    Game.normalMode = false;
+                    Game.insaneMode = true;
+                    break;
+                }
         }
     }
+
 
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
