@@ -31,7 +31,7 @@ public class CatchDectector {
                     throwableMiddleX < playerMiddleX + 20) {
 
                 throwable.getPicture().delete();
-                //Sound.play("beer.wav");
+                Sound.play("beer.wav");
                 return true;
             }
             return false;
@@ -43,7 +43,7 @@ public class CatchDectector {
                     throwableMiddleX < playerMiddleX + 20) {
 
                 throwable.getPicture().delete();
-                //Sound.play("guronsan.wav");
+                Sound.play("guronsan.wav");
                 return true;
             }
             return false;

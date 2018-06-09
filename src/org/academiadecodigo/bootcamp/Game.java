@@ -192,7 +192,9 @@ public class Game {
         }
 
         if (start || restart) {
-            EndGame.displayModal();
+            if(!restart) {
+                EndGame.displayModal();
+            }
 
             while (!restart) {
                 try {

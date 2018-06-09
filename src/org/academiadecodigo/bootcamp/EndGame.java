@@ -6,12 +6,14 @@ public class EndGame {
     private static Picture endGameBackground;
 
     public static void displayModal() {
-            if (Game.player.getHealth() <= 0) {
-                endGameBackground = new Picture(10, 10, "game-over.jpg");
-                endGameBackground.draw();
-                return;
-            }
-            endGameBackground = new Picture(10, 10, "win.jpg");
+        if (Game.player.getHealth() <= 0) {
+            endGameBackground = new Picture(10, 10, "game-over.jpg");
             endGameBackground.draw();
+            Sound.play("game-over.wav");
+            return;
+        }
+        endGameBackground = new Picture(10, 10, "win.jpg");
+        endGameBackground.draw();
+        Sound.play("win.wav");
     }
 }
