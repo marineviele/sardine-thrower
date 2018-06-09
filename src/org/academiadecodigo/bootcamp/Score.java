@@ -40,13 +40,13 @@ public class Score {
         scoreBar = new Picture(10, 10, "scoreBar.jpg");
         scoreBar.draw();
 
-        textScore = new Text(50, 30, "");
+        textScore = new Text(50, 92, "");
         scoreToString();
         textScore.setColor(Color.WHITE);
         textScore.grow(30,20);
         textScore.draw();
 
-        textHealth = new Text(200, 30, "");
+        textHealth = new Text(200, 92, "");
         healthToString();
         textHealth.setColor(Color.WHITE);
         textHealth.grow(30,20);

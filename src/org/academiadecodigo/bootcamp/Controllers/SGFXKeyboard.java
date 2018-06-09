@@ -18,7 +18,7 @@ public class SGFXKeyboard implements KeyboardHandler {
     private KeyboardEvent rightReleased;
     private KeyboardEvent rPress;
     private KeyboardEvent pPress;
-    private KeyboardEvent cPress;
+    private KeyboardEvent iPress;
     private KeyboardEvent onePress;
     private KeyboardEvent twoPress;
     private KeyboardEvent threePress;
@@ -61,10 +61,10 @@ public class SGFXKeyboard implements KeyboardHandler {
         pPress.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
         keyboard.addEventListener(pPress);
 
-        cPress = new KeyboardEvent();
-        cPress.setKey(KeyboardEvent.KEY_C);
-        cPress.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-        keyboard.addEventListener(cPress);
+        iPress = new KeyboardEvent();
+        iPress.setKey(KeyboardEvent.KEY_I);
+        iPress.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        keyboard.addEventListener(iPress);
 
 
         //Game level
@@ -92,7 +92,7 @@ public class SGFXKeyboard implements KeyboardHandler {
         keyboard.removeEventListener(rightReleased);
         keyboard.removeEventListener(rPress);
         keyboard.removeEventListener(pPress);
-        keyboard.removeEventListener(cPress);
+        keyboard.removeEventListener(iPress);
         keyboard.removeEventListener(onePress);
         keyboard.removeEventListener(twoPress);
         keyboard.removeEventListener(threePress);
@@ -124,7 +124,7 @@ public class SGFXKeyboard implements KeyboardHandler {
                     break;
                 }
                 break;
-            case KeyboardEvent.KEY_C:
+            case KeyboardEvent.KEY_I:
                 if(!Game.start) {
                     Game.info = !Game.info;
                     break;
