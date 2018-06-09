@@ -13,7 +13,7 @@ public class Beer {
 
     public Beer() {
         picture = new Picture(0, 0, "thrower.png");
-        position = new Position(0,Game.stage.getMaxY() - picture.getHeight());
+        position = new Position(0, Game.stage.getMaxY() - picture.getHeight());
         picture.translate(0, position.getY());
 
     }
