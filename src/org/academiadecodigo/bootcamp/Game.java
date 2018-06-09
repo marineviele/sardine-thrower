@@ -20,13 +20,22 @@ public class Game {
     private Throwable[] poos;
     public static int throwedPoos = 0;
 
+    public static boolean pause;
+    public static boolean info;
+    public static boolean easyMode;
+    public static boolean normalMode;
+    public static boolean insaneMode;
+    private int refreshRate;
+
 
     public Game() {
     }
 
-    public void init(int numThrowables) {
+
+    private void init(int numThrowables) {
         stage = new Picture(10, 10, "background2.jpg");
         stage.draw();
+
 
         throwables = new Throwable[numThrowables];
 
@@ -52,6 +61,10 @@ public class Game {
 
     public void startGame(int numThrowables) {
         restart = false;
+        pause = false;
+        easyMode = false;
+        normalMode = false;
+        insaneMode = false;
 
         this.numThrowables = numThrowables;
 
@@ -60,6 +73,33 @@ public class Game {
         while (!start) {
             try {
                 Thread.sleep(1000);
+
+                if (info) {
+                    Picture infoScreen = new Picture(10, 10, "credits.jpg");
+                    infoScreen.draw();
+                    startScreen.delete();
+
+                    while (info) {
+                        Thread.sleep(500);
+                    }
+                    startScreen.draw();
+                    infoScreen.delete();
+                }
+
+                if (easyMode) {
+                    refreshRate = 7;
+                    continue;
+                }
+
+                if (normalMode) {
+                    refreshRate = 5;
+                    continue;
+                }
+
+                if (insaneMode) {
+                    refreshRate = 4;
+                }
+
             } catch (Exception e) {
                 System.out.println(e);
             }
@@ -69,7 +109,7 @@ public class Game {
         start();
     }
 
-    public void start() {
+    private void start() {
         int throwDelay = 0;
         throwedPoos = 0;
 
@@ -79,12 +119,20 @@ public class Game {
             System.out.println(e);
         }
 
-        for (int i = 0; i < throwables.length - 1; i++) {
+        for (int i = 0; i < throwables.length - 2; i++) {
             while (throwables[i].getOnAir() && player.getHealth() > 0 && start) {
                 try {
-                    Thread.sleep(5);
+                    Thread.sleep(refreshRate);
                 } catch (Exception e) {
                     System.out.println(e);
+                }
+
+                while (pause) {
+                    try {
+                        Thread.sleep(500);
+                    } catch (Exception e) {
+                        System.out.println(e);
+                    }
                 }
 
                 thrower.sendThrowable(throwables[i]);
@@ -102,15 +150,13 @@ public class Game {
                     }
                 }
 
-                /*
-                if (throwDelay > 300) {
+                if (throwDelay > 300 && insaneMode) {
                     thrower.sendThrowable(throwables[i + 2]);
                     if (CatchDectector.catchChecker(throwables[i + 2], player)) {
                         throwables[i + 2].setOnAir(false);
                         score.incrementScore();
                     }
                 }
-                */
 
                 if (throwDelay > 300) {
                     poos[throwedPoos].move();
@@ -127,7 +173,7 @@ public class Game {
             }
         }
 
-        if (start) {
+        if (start || restart) {
             EndGame.displayModal();
 
             while (!restart) {
@@ -137,6 +183,8 @@ public class Game {
                     System.out.println(e);
                 }
             }
+
+            player.endKeyboard();
             startGame(numThrowables);
         }
     }
