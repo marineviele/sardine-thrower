@@ -1,7 +1,7 @@
 package org.academiadecodigo.bootcamp;
 
-import java.io.*;
-import javax.sound.sampled.*;
+        import java.io.*;
+        import javax.sound.sampled.*;
 
 public class Sound {
     public static void play(String pathname) {

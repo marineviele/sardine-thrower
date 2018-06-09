@@ -32,7 +32,7 @@ public class Game {
 
 
     private void init(int numThrowables) {
-        stage = new Picture(10, 10, "background2.jpg");
+        stage = new Picture(10, 10, "background.jpg");
         stage.draw();
 
 
@@ -45,11 +45,11 @@ public class Game {
         dropables = new Throwable[numThrowables];
 
         for (int i = 0; i < numThrowables; i++) {
-            if(Math.random() < 0.45) {
+            if(Math.random() < 0.35) {
                 dropables[i] = new Poo();
                 continue;
             }
-            if(Math.random() < 0.75) {
+            if(Math.random() < 0.65) {
                 dropables[i] = new Beer();
                 continue;
             }
