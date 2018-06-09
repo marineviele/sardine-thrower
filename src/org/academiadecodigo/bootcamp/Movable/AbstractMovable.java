@@ -10,6 +10,7 @@ public abstract class AbstractMovable implements Movable {
     private Picture picture;
     private int height;
     private int width;
+    private boolean drunk;
 
     private int velocity = 9;
     private Direction direction = Direction.NODIRECTION;
@@ -22,6 +23,10 @@ public abstract class AbstractMovable implements Movable {
     }
 
     public void setDirection(Direction direction){
+        if(drunk) {
+            this.direction = direction.reverse(direction);
+            return;
+        }
         this.direction = direction;
     }
 
@@ -58,6 +63,14 @@ public abstract class AbstractMovable implements Movable {
 
         //System.out.println(xPos);
         //System.out.println(position.getX());
+    }
+
+    public void drink() {
+       drunk = true;
+    }
+
+    public void unDrink() {
+        drunk = false;
     }
 
     @Override

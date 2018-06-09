@@ -8,7 +8,7 @@ public class Player extends AbstractMovable {
     public Position position;
     private SGFXKeyboard keyboard;
     private int score = 0;
-    private int health = 5;
+    private int health = 6;
     private int velocity;
     private String url = "plate.png";
     private Picture picture;                                //SFGX

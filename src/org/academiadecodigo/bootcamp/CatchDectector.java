@@ -1,6 +1,8 @@
 package org.academiadecodigo.bootcamp;
 
 import org.academiadecodigo.bootcamp.Movable.Player;
+import org.academiadecodigo.bootcamp.Throwable.Beer;
+import org.academiadecodigo.bootcamp.Throwable.Guronsan;
 import org.academiadecodigo.bootcamp.Throwable.Poo;
 import org.academiadecodigo.bootcamp.Throwable.Throwable;
 
@@ -18,6 +20,30 @@ public class CatchDectector {
 
                 throwable.getPicture().delete();
                 Sound.play("poo.wav");
+                return true;
+            }
+            return false;
+        }
+
+        if (throwable instanceof Beer) {
+            if (throwableMaxY > playerY &&
+                    throwableMiddleX > playerMiddleX - 50 &&
+                    throwableMiddleX < playerMiddleX + 20) {
+
+                throwable.getPicture().delete();
+                //Sound.play("beer.wav");
+                return true;
+            }
+            return false;
+        }
+
+        if (throwable instanceof Guronsan) {
+            if (throwableMaxY > playerY &&
+                    throwableMiddleX > playerMiddleX - 50 &&
+                    throwableMiddleX < playerMiddleX + 20) {
+
+                throwable.getPicture().delete();
+                //Sound.play("guronsan.wav");
                 return true;
             }
             return false;
