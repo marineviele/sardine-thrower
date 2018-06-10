@@ -18,7 +18,6 @@ public class Game {
     private Thrower thrower;
     private Player player;
     private SGFXKeyboard keyboard;
-    private DropableFactory dropableFactory;
     private Catchable[] throwables;
     private Catchable[] dropables;
     private Picture stage;
@@ -52,8 +51,6 @@ public class Game {
 
         keyboard = new SGFXKeyboard();
         keyboard.initKeyboard(player, this);
-
-        dropableFactory = new DropableFactory();
 
         stageSound = new Sound("resources/game.wav");
 
@@ -155,12 +152,12 @@ public class Game {
                     System.out.println(e);
                 }
 
-                if (!stageSound.isPlaying()) {                       // passar para outro método no game
+                if (!stageSound.isPlaying()) {
                     stageSound = new Sound("resources/game.wav");
                     stageSound.play();
                 }
 
-                while (pause) {                                     // passar para outro método invocado pelo keyboard
+                while (pause) {
                     try {
                         Thread.sleep(500);
                     } catch (Exception e) {

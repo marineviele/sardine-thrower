@@ -4,6 +4,7 @@ import org.academiadecodigo.bootcamp.GameObject.Catchable;
 import org.academiadecodigo.bootcamp.Position.Position;
 
 public class ThrowableFactory {
+
     public static Catchable createThrowable() {
         Position position = new Position(25, 660);
 

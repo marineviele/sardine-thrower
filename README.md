@@ -1,3 +1,3 @@
 # SARDINE THROWER
 
-A game where you try to catch sardines
+This is a simple game, written in JAVA, that will allow the common person 
