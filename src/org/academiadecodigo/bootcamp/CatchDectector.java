@@ -19,7 +19,7 @@ public class CatchDectector {
                     throwableMiddleX < playerMiddleX + 20) {
 
                 throwable.getPicture().delete();
-                Sound.play("pot.wav");
+                Sound.playOnce("pot.wav");
                 return true;
             }
             return false;
@@ -31,7 +31,7 @@ public class CatchDectector {
                     throwableMiddleX < playerMiddleX + 20) {
 
                 throwable.getPicture().delete();
-                Sound.play("beer.wav");
+                Sound.playOnce("beer.wav");
                 return true;
             }
             return false;
@@ -43,7 +43,7 @@ public class CatchDectector {
                     throwableMiddleX < playerMiddleX + 20) {
 
                 throwable.getPicture().delete();
-                Sound.play("guronsan.wav");
+                Sound.playOnce("guronsan.wav");
                 return true;
             }
             return false;
@@ -53,7 +53,7 @@ public class CatchDectector {
                 throwableMiddleX > playerMiddleX - 20 &&
                 throwableMiddleX < playerMiddleX + 20) {
 
-            Sound.play("catch.wav");            //SFGX
+            Sound.playOnce("catch.wav");            //SFGX
             throwable.getPicture().delete();                //SFGX
             return true;
         }

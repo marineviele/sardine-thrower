@@ -28,6 +28,8 @@ public class Game {
     public static boolean normalMode;
     public static boolean insaneMode;
     private int refreshRate;
+    private Sound introSound;
+    private Sound gameSound;
 
 
     public Game() {
@@ -40,6 +42,11 @@ public class Game {
 
         stage = new Picture(10, 10, "background.jpg");
         player = new Player(stage.getWidth() / 2, 650);
+
+        gameSound = new Sound("game.wav");
+
+        introSound = new Sound("intro.wav");
+        introSound.play();
     }
 
 
@@ -57,6 +64,11 @@ public class Game {
         while (!start) {
             try {
                 Thread.sleep(1000);
+
+                if(!introSound.isPlaying()) {
+                    introSound = new Sound("intro.wav");
+                    introSound.play();
+                }
 
                 if (info) {
                     Picture infoScreen = new Picture(10, 10, "credits.jpg");
@@ -89,6 +101,8 @@ public class Game {
             }
         }
 
+        introSound.stop();
+
         stage.draw();
 
         throwables = new Throwable[numThrowables];
@@ -119,6 +133,8 @@ public class Game {
 
         startScreen.delete();
 
+        gameSound.play();
+
         start();
     }
 
@@ -139,6 +155,11 @@ public class Game {
                     Thread.sleep(refreshRate);
                 } catch (Exception e) {
                     System.out.println(e);
+                }
+
+                if(!gameSound.isPlaying()) {
+                    introSound = new Sound("game.wav");
+                    gameSound.play();
                 }
 
                 while (pause) {
@@ -199,6 +220,8 @@ public class Game {
         }
 
         if (start || restart) {
+            gameSound.stop();
+
             if(!restart) {
                 EndGame.displayModal();
             }

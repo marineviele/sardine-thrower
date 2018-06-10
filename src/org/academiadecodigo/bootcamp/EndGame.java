@@ -9,11 +9,11 @@ public class EndGame {
         if (Game.player.getHealth() <= 0) {
             endGameBackground = new Picture(10, 10, "game-over.jpg");
             endGameBackground.draw();
-            Sound.play("game-over.wav");
+            Sound.playOnce("game-over.wav");
             return;
         }
         endGameBackground = new Picture(10, 10, "win.jpg");
         endGameBackground.draw();
-        Sound.play("win.wav");
+        Sound.playOnce("win.wav");
     }
 }

@@ -23,7 +23,7 @@ public abstract class AbstractThrowable implements Throwable {
             picture.delete();
             Game.score.decreaseHealth();
             Game.player.decreaseHealth();
-            Sound.play("missedCatch.wav");
+            Sound.playOnce("missedCatch.wav");
             setOnFloor(true);
             setOnAir(false);
             return;
