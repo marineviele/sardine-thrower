@@ -34,7 +34,7 @@ public class Score {
 
     public void displayScore(){
 
-        Picture scoreBar = new Picture(0, 0, "scoreBar.jpg");
+        Picture scoreBar = new Picture(0, 0, "resources/scoreBar.jpg");
         scoreBar.draw();
 
         textScore = new Text(50, 30, "");

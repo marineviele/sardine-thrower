@@ -9,7 +9,7 @@ public class Sound {
     public Sound(String pathname) {
         try {
             clip = AudioSystem.getClip();
-            clip.open(AudioSystem.getAudioInputStream(new File("resources/" + pathname)));
+            clip.open(AudioSystem.getAudioInputStream(new File(pathname)));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -18,7 +18,7 @@ public class Sound {
     public static void playOnce(String pathname) {
         try {
             Clip clip = AudioSystem.getClip();
-            clip.open(AudioSystem.getAudioInputStream(new File("resources/" + pathname)));
+            clip.open(AudioSystem.getAudioInputStream(new File(pathname)));
             clip.start();
         } catch (Exception e) {
             System.out.println(e);

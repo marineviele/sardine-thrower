@@ -42,15 +42,15 @@ public class Game {
 
 
     private void init() {
-        startScreen = new Picture(PADDING, PADDING, "startScreen.jpg");
+        startScreen = new Picture(PADDING, PADDING, "resources/startScreen.jpg");
         startScreen.draw();
 
-        stage = new Picture(PADDING, PADDING, "background.jpg");
+        stage = new Picture(PADDING, PADDING, "resources/background.jpg");
         player = new Player(stage.getWidth() / 2, stage.getHeight() - 150, stage.getWidth());
 
-        stageSound = new Sound("game.wav");
+        stageSound = new Sound("resources/game.wav");
 
-        introSound = new Sound("intro.wav");
+        introSound = new Sound("resources/intro.wav");
         introSound.play();
     }
 
@@ -71,12 +71,12 @@ public class Game {
                 Thread.sleep(1000);
 
                 if (!introSound.isPlaying()) {           // checks if introsound is playing, loops sound when it ends
-                    introSound = new Sound("intro.wav");
+                    introSound = new Sound("resources/intro.wav");
                     introSound.play();
                 }
 
                 if (info) {
-                    Picture infoScreen = new Picture(10, 10, "credits.jpg");
+                    Picture infoScreen = new Picture(10, 10, "resources/credits.jpg");
                     infoScreen.draw();
                     startScreen.delete();
 
@@ -157,7 +157,7 @@ public class Game {
                 }
 
                 if (!stageSound.isPlaying()) {                       // passar para outro método no game
-                    stageSound = new Sound("game.wav");
+                    stageSound = new Sound("resources/game.wav");
                     stageSound.play();
                 }
 
@@ -240,15 +240,15 @@ public class Game {
 
         if (!restart) {
             if (score.getHealth() <= 0) {
-                endGameBackground = new Picture(PADDING, PADDING, "game-over.jpg");
+                endGameBackground = new Picture(PADDING, PADDING, "resources/game-over.jpg");
                 endGameBackground.draw();
-                Sound.playOnce("game-over.wav");
+                Sound.playOnce("resources/game-over.wav");
                 return;
             }
 
-            endGameBackground = new Picture(PADDING, PADDING, "win.jpg");
+            endGameBackground = new Picture(PADDING, PADDING, "resources/win.jpg");
             endGameBackground.draw();
-            Sound.playOnce("win.wav");
+            Sound.playOnce("resources/win.wav");
         }
     }
 

@@ -1,10 +1,7 @@
 package org.academiadecodigo.bootcamp.GameObject.Dropable;
 
-import org.academiadecodigo.bootcamp.CollisionDectector;
-import org.academiadecodigo.bootcamp.Game;
 import org.academiadecodigo.bootcamp.Position.Position;
 import org.academiadecodigo.bootcamp.GameObject.Catchable;
-import org.academiadecodigo.bootcamp.Sound;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public abstract class AbstractDropable implements Catchable {

@@ -1,7 +1,6 @@
 package org.academiadecodigo.bootcamp.GameObject.Throwable;
 
 import org.academiadecodigo.bootcamp.GameObject.Catchable;
-import org.academiadecodigo.bootcamp.GameObject.Throwable.Sardine;
 import org.academiadecodigo.bootcamp.Position.Position;
 
 public class ThrowableFactory {

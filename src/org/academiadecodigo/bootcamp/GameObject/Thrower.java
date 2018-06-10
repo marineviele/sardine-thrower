@@ -7,8 +7,8 @@ public class Thrower {
     private Picture picture;
 
     public Thrower() {
-        picture = new Picture(0, 0, "thrower.png");         // move to SGFX
-        picture.translate(10, Game.gameHeight - picture.getHeight());
+        picture = new Picture(0, 0, "resources/thrower.png");         // move to SGFX
+        picture.translate(10, Game.gameHeight - picture.getHeight() + Game.PADDING);
         picture.draw();
     }
 

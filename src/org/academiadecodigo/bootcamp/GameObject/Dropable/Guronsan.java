@@ -3,7 +3,7 @@ package org.academiadecodigo.bootcamp.GameObject.Dropable;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Guronsan extends AbstractDropable {
-    private String url = "guronsan.png";
+    private String url = "resources/guronsan.png";
 
     public Guronsan() {
         super.setPosition();

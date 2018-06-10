@@ -1,7 +1,6 @@
 package org.academiadecodigo.bootcamp.GameObject.Throwable;
 
 import org.academiadecodigo.bootcamp.CollisionDectector;
-import org.academiadecodigo.bootcamp.Game;
 import org.academiadecodigo.bootcamp.GameObject.Catchable;
 import org.academiadecodigo.bootcamp.Position.Position;
 import org.academiadecodigo.bootcamp.Sound;
@@ -20,7 +19,7 @@ public abstract class AbstractThrowable implements Catchable {
     public void fell(){
         if (CollisionDectector.hitGround(this)) {
             picture.delete();
-            Sound.playOnce("missedCatch.wav");
+            Sound.playOnce("resources/missedCatch.wav");
             setOnFloor(true);
             setOnAir(false);
         }

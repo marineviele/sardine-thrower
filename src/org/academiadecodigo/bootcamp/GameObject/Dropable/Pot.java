@@ -3,7 +3,7 @@ package org.academiadecodigo.bootcamp.GameObject.Dropable;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Pot extends AbstractDropable {
-    private String url = "pot.png";
+    private String url = "resources/pot.png";
 
     public Pot() {
         super.setPosition();

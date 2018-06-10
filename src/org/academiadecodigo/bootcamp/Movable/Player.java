@@ -9,7 +9,7 @@ public class Player extends AbstractMovable {
     private Position position;
     private Picture picture;
     private SGFXKeyboard keyboard;
-    private String url = "plate.png";
+    private String url = "resources/plate.png";
 
     public Player(int xPos, int yPos, int gameWidth) {
 

@@ -24,22 +24,22 @@ public class CollisionDectector {
             catchable.getPicture().delete();
 
             if (catchable instanceof Pot) {
-                Sound.playOnce("pot.wav");
+                Sound.playOnce("resources/pot.wav");
                 return true;
             }
 
             if (catchable instanceof Beer) {
-                Sound.playOnce("beer.wav");
+                Sound.playOnce("resources/beer.wav");
                 return true;
             }
 
             if (catchable instanceof Guronsan) {
-                Sound.playOnce("guronsan.wav");
+                Sound.playOnce("resources/guronsan.wav");
                 return true;
             }
 
             if (catchable instanceof Sardine) {
-                Sound.playOnce("catch.wav");
+                Sound.playOnce("resources/catch.wav");
                 return true;
             }
         }
