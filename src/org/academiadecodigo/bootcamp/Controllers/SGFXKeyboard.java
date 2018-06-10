@@ -28,8 +28,7 @@ public class SGFXKeyboard implements KeyboardHandler {
         this.player = player;
         this.game = game;
         keyboard = new Keyboard(this);
-
-
+        
         //Movement
         leftPress = new KeyboardEvent();
         leftPress.setKey(KeyboardEvent.KEY_LEFT);
@@ -86,7 +85,6 @@ public class SGFXKeyboard implements KeyboardHandler {
         keyboard.addEventListener(threePress);
     }
 
-
     public void endKeyboard() {
         keyboard.removeEventListener(leftPress);
         keyboard.removeEventListener(rightPress);
@@ -108,9 +106,12 @@ public class SGFXKeyboard implements KeyboardHandler {
 
             //Movement
             case KeyboardEvent.KEY_LEFT:
+
                 player.setDirection(Direction.LEFT);
                 break;
+
             case KeyboardEvent.KEY_RIGHT:
+
                 player.setDirection(Direction.RIGHT);
                 break;
 
@@ -118,6 +119,7 @@ public class SGFXKeyboard implements KeyboardHandler {
             //Re-Start, Pause and Credits
             case KeyboardEvent.KEY_R:
 
+                game.setPause(false);
                 game.setRestart(true);
                 game.setStartStage(false);
                 break;
@@ -141,20 +143,25 @@ public class SGFXKeyboard implements KeyboardHandler {
 
             //Game level
             case KeyboardEvent.KEY_1:
+
                 if(!game.getStartStage()) {
                     game.setStartStage(true);
                     game.setEasyMode(true);
                     break;
                 }
                 break;
+
             case KeyboardEvent.KEY_2:
+
                 if(!game.getStartStage()) {
                     game.setStartStage(true);
                     game.setNormalMode(true);
                     break;
                 }
                 break;
+
             case KeyboardEvent.KEY_3:
+
                 if(!game.getStartStage()) {
                     game.setStartStage(true);
                     game.setInsaneMode(true);
@@ -162,7 +169,6 @@ public class SGFXKeyboard implements KeyboardHandler {
                 }
         }
     }
-
 
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
