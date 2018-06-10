@@ -3,7 +3,7 @@ package org.academiadecodigo.bootcamp.GameObject;
 import org.academiadecodigo.bootcamp.Position.Position;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-public interface Throwable {
+public interface Catchable {
     public void move();
 
     boolean getOnAir();

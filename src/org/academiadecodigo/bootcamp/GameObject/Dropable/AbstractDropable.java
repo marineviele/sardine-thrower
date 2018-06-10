@@ -2,10 +2,10 @@ package org.academiadecodigo.bootcamp.GameObject.Dropable;
 
 import org.academiadecodigo.bootcamp.Game;
 import org.academiadecodigo.bootcamp.Position.Position;
-import org.academiadecodigo.bootcamp.GameObject.Throwable;
+import org.academiadecodigo.bootcamp.GameObject.Catchable;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-public abstract class AbstractDropable implements Throwable {
+public abstract class AbstractDropable implements Catchable {
     private boolean onAir = true;
     private boolean onFloor = false;
     private Position position;
@@ -24,7 +24,7 @@ public abstract class AbstractDropable implements Throwable {
             vy = 0;
             onFloor = true;
             onAir = false;
-            Game.dropedDropables++;
+            Game.nextToDrop++;
             return;
         }
 

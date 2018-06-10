@@ -1,11 +1,12 @@
 package org.academiadecodigo.bootcamp;
 
-import org.academiadecodigo.bootcamp.GameObject.ThrowableFactory;
+import org.academiadecodigo.bootcamp.GameObject.Throwable.ThrowableFactory;
+import org.academiadecodigo.bootcamp.GameObject.Thrower;
 import org.academiadecodigo.bootcamp.Movable.Player;
 import org.academiadecodigo.bootcamp.GameObject.Dropable.Beer;
 import org.academiadecodigo.bootcamp.GameObject.Dropable.Guronsan;
 import org.academiadecodigo.bootcamp.GameObject.Dropable.Pot;
-import org.academiadecodigo.bootcamp.GameObject.Throwable;
+import org.academiadecodigo.bootcamp.GameObject.Catchable;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Game {
@@ -13,14 +14,14 @@ public class Game {
     public static Player player;
     public static Picture stage;
     private Picture startScreen;
-    public static boolean start;
+    public static boolean startStage;
     public static boolean restart;
-    private Throwable[] throwables;
+    private Catchable[] throwables;
     public static Score score;
     private int numThrowables;
 
-    private Throwable[] dropables;
-    public static int dropedDropables = 0;
+    private Catchable[] dropables;
+    public static int nextToDrop = 0;
 
     public static boolean pause;
     public static boolean info;
@@ -29,7 +30,9 @@ public class Game {
     public static boolean insaneMode;
     private int refreshRate;
     private Sound introSound;
-    private Sound gameSound;
+    private Sound stageSound;
+
+    private Picture endGameBackground;
 
 
     public Game() {
@@ -43,14 +46,14 @@ public class Game {
         stage = new Picture(10, 10, "background.jpg");
         player = new Player(stage.getWidth() / 2, 650);
 
-        gameSound = new Sound("game.wav");
+        stageSound = new Sound("game.wav");
 
         introSound = new Sound("intro.wav");
         introSound.play();
     }
 
 
-    public void startGame(int numThrowables) {
+    public void start(int numThrowables) {
         restart = false;
         pause = false;
         easyMode = false;
@@ -61,11 +64,11 @@ public class Game {
 
         init();
 
-        while (!start) {
+        while (!startStage) {
             try {
                 Thread.sleep(1000);
 
-                if(!introSound.isPlaying()) {
+                if (!introSound.isPlaying()) {           // checks if introsound is playing, loops sound when it ends
                     introSound = new Sound("intro.wav");
                     introSound.play();
                 }
@@ -76,7 +79,7 @@ public class Game {
                     startScreen.delete();
 
                     while (info) {
-                        Thread.sleep(500);
+                        Thread.sleep(500);      // while user doesn't go back to startscreen, keeps info screen on
                     }
                     startScreen.draw();
                     infoScreen.delete();
@@ -105,7 +108,9 @@ public class Game {
 
         stage.draw();
 
-        throwables = new Throwable[numThrowables];
+        stageSound.play();
+
+        throwables = new Catchable[numThrowables];
 
         for (int i = 0; i < numThrowables; i++) {
             throwables[i] = ThrowableFactory.createThrowable();
@@ -113,14 +118,14 @@ public class Game {
 
         thrower = new Thrower();
 
-        dropables = new Throwable[numThrowables];
+        dropables = new Catchable[numThrowables];
 
         for (int i = 0; i < numThrowables; i++) {
-            if(Math.random() < 0.35) {
+            if (Math.random() < 0.45) {
                 dropables[i] = new Pot();
                 continue;
             }
-            if(Math.random() < 0.65) {
+            if (Math.random() < 0.75) {
                 dropables[i] = new Beer();
                 continue;
             }
@@ -133,36 +138,28 @@ public class Game {
 
         startScreen.delete();
 
-        gameSound.play();
-
-        start();
+        startStage();
     }
 
 
-    private void start() {
+    private void startStage() {
         int throwDelay = 0;
-        dropedDropables = 0;
-
-        try {
-            Thread.sleep(1000);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+        nextToDrop = 0;
 
         for (int i = 0; i < throwables.length - 2; i++) {
-            while (throwables[i].getOnAir() && player.getHealth() > 0 && start) {
+            while (throwables[i].getOnAir() && player.getHealth() > 0 && startStage) {
                 try {
                     Thread.sleep(refreshRate);
                 } catch (Exception e) {
                     System.out.println(e);
                 }
 
-                if(!gameSound.isPlaying()) {
-                    introSound = new Sound("game.wav");
-                    gameSound.play();
+                if (!stageSound.isPlaying()) {                       // passar para outro método no game
+                    stageSound = new Sound("game.wav");
+                    stageSound.play();
                 }
 
-                while (pause) {
+                while (pause) {                                     // passar para outro método invocado pelo keyboard
                     try {
                         Thread.sleep(500);
                     } catch (Exception e) {
@@ -172,12 +169,12 @@ public class Game {
 
                 thrower.sendThrowable(throwables[i]);
 
-                if (CatchDectector.catchChecker(throwables[i], player)) {
-                    throwables[i].setOnAir(false);
+                if (CatchDectector.catchChecker(throwables[i], player)) {   // transformar método estático para método normal. game guarda instância de catchdetector.
+                    throwables[i].setOnAir(false);                   // criar método que invoca setOnAir e incrementScore no game
                     score.incrementScore();
                 }
 
-                if (throwDelay > 150) {
+                if (throwDelay > 150 && (normalMode || insaneMode)) {
                     thrower.sendThrowable(throwables[i + 1]);
                     if (CatchDectector.catchChecker(throwables[i + 1], player)) {
                         throwables[i + 1].setOnAir(false);
@@ -194,23 +191,23 @@ public class Game {
                 }
 
                 if (throwDelay > 50) {
-                    dropables[dropedDropables].move();
-                    if (CatchDectector.catchChecker(dropables[dropedDropables], player)) {
-                        dropables[dropedDropables].setOnAir(false);
-                        if(dropables[dropedDropables] instanceof Pot) {
+                    dropables[nextToDrop].move();
+                    if (CatchDectector.catchChecker(dropables[nextToDrop], player)) {
+                        dropables[nextToDrop].setOnAir(false);
+                        if (dropables[nextToDrop] instanceof Pot) {
                             Game.score.decreaseHealth();
                             Game.player.decreaseHealth();
                         }
 
-                        if(dropables[dropedDropables] instanceof Beer) {
+                        if (dropables[nextToDrop] instanceof Beer) {
                             player.drink();
                         }
 
-                        if(dropables[dropedDropables] instanceof Guronsan) {
+                        if (dropables[nextToDrop] instanceof Guronsan) {
                             player.unDrink();
                         }
 
-                        dropedDropables++;
+                        nextToDrop++;
                     }
                 }
 
@@ -219,23 +216,35 @@ public class Game {
             }
         }
 
-        if (start || restart) {
-            gameSound.stop();
+        stageSound.stop();
 
-            if(!restart) {
-                EndGame.displayModal();
+        displayModal();
+
+        while (!restart) {
+            try {
+                Thread.sleep(1000);
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }
+
+        player.endKeyboard();
+        start(numThrowables);
+    }
+
+    private void displayModal() {
+
+        if (!restart) {
+            if (player.getHealth() <= 0) {
+                endGameBackground = new Picture(10, 10, "game-over.jpg");
+                endGameBackground.draw();
+                Sound.playOnce("game-over.wav");
+                return;
             }
 
-            while (!restart) {
-                try {
-                    Thread.sleep(1000);
-                } catch (Exception e) {
-                    System.out.println(e);
-                }
-            }
-
-            player.endKeyboard();
-            startGame(numThrowables);
+            endGameBackground = new Picture(10, 10, "win.jpg");
+            endGameBackground.draw();
+            Sound.playOnce("win.wav");
         }
     }
 }

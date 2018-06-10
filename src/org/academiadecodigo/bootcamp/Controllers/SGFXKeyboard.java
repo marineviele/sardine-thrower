@@ -116,16 +116,16 @@ public class SGFXKeyboard implements KeyboardHandler {
             //Re-Start, Pause and Credits
             case KeyboardEvent.KEY_R:
                 Game.restart = true;
-                Game.start = false;
+                Game.startStage = false;
                 break;
             case KeyboardEvent.KEY_P:
-                if(Game.start) {
+                if(Game.startStage) {
                     Game.pause = !Game.pause;
                     break;
                 }
                 break;
             case KeyboardEvent.KEY_I:
-                if(!Game.start) {
+                if(!Game.startStage) {
                     Game.info = !Game.info;
                     break;
                 }
@@ -134,8 +134,8 @@ public class SGFXKeyboard implements KeyboardHandler {
 
             //Game level
             case KeyboardEvent.KEY_1:
-                if(!Game.start) {
-                    Game.start = true;
+                if(!Game.startStage) {
+                    Game.startStage = true;
                     Game.easyMode = true;
                     Game.normalMode = false;
                     Game.insaneMode = false;
@@ -143,8 +143,8 @@ public class SGFXKeyboard implements KeyboardHandler {
                 }
                 break;
             case KeyboardEvent.KEY_2:
-                if(!Game.start) {
-                    Game.start = true;
+                if(!Game.startStage) {
+                    Game.startStage = true;
                     Game.easyMode = false;
                     Game.normalMode = true;
                     Game.insaneMode = false;
@@ -152,8 +152,8 @@ public class SGFXKeyboard implements KeyboardHandler {
                 }
                 break;
             case KeyboardEvent.KEY_3:
-                if(!Game.start) {
-                    Game.start = true;
+                if(!Game.startStage) {
+                    Game.startStage = true;
                     Game.easyMode = false;
                     Game.normalMode = false;
                     Game.insaneMode = true;

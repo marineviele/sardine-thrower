@@ -1,11 +1,12 @@
-package org.academiadecodigo.bootcamp.GameObject;
+package org.academiadecodigo.bootcamp.GameObject.Throwable;
 
 import org.academiadecodigo.bootcamp.Game;
+import org.academiadecodigo.bootcamp.GameObject.Catchable;
 import org.academiadecodigo.bootcamp.Position.Position;
 import org.academiadecodigo.bootcamp.Sound;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-public abstract class AbstractThrowable implements Throwable {
+public abstract class AbstractThrowable implements Catchable {
     private boolean onAir = true;
     private boolean onFloor = false;
     private Position position;

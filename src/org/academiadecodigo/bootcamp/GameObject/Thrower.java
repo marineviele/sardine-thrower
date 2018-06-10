@@ -1,6 +1,7 @@
-package org.academiadecodigo.bootcamp;
+package org.academiadecodigo.bootcamp.GameObject;
 
-import org.academiadecodigo.bootcamp.GameObject.Throwable;
+import org.academiadecodigo.bootcamp.Game;
+import org.academiadecodigo.bootcamp.GameObject.Catchable;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Thrower {
@@ -12,7 +13,7 @@ public class Thrower {
         picture.draw();
     }
 
-    public void sendThrowable(Throwable throwable) {
-        throwable.move();
+    public void sendThrowable(Catchable catchable) {
+        catchable.move();
     }
 }
