@@ -1,5 +1,6 @@
 package org.academiadecodigo.bootcamp;
 
+import org.academiadecodigo.bootcamp.Controllers.SGFXKeyboard;
 import org.academiadecodigo.bootcamp.GameObject.Throwable.ThrowableFactory;
 import org.academiadecodigo.bootcamp.GameObject.Thrower;
 import org.academiadecodigo.bootcamp.Movable.Player;
@@ -15,31 +16,30 @@ public class Game {
 
     private Thrower thrower;
     private Player player;
+    private SGFXKeyboard keyboard;
     private Catchable[] throwables;
     private Catchable[] dropables;
     private Picture stage;
     private Picture startScreen;
     private Picture endGameBackground;
-
     private Score score;
+
+   // private GameMode gameMode;
+
     private Sound introSound;
     private Sound stageSound;
 
-    public static boolean startStage;
-    public static boolean restart;
-    public static boolean pause;
-    public static boolean info;
-    public static boolean easyMode;
-    public static boolean normalMode;
-    public static boolean insaneMode;
+    private boolean startStage;
+    private boolean restart;
+    private boolean pause;
+    private boolean info;
+    private boolean easyMode;
+    private boolean normalMode;
+    private boolean insaneMode;
 
     private int nextToDrop = 0;
     private int numThrowables;
     private int refreshRate;
-
-    Game() {
-    }
-
 
     private void init() {
         startScreen = new Picture(PADDING, PADDING, "resources/startScreen.jpg");
@@ -47,6 +47,9 @@ public class Game {
 
         stage = new Picture(PADDING, PADDING, "resources/background.jpg");
         player = new Player(stage.getWidth() / 2, stage.getHeight() - 150, stage.getWidth());
+
+        keyboard = new SGFXKeyboard();
+        keyboard.initKeyboard(player, this);
 
         stageSound = new Sound("resources/game.wav");
 
@@ -76,7 +79,7 @@ public class Game {
                 }
 
                 if (info) {
-                    Picture infoScreen = new Picture(10, 10, "resources/credits.jpg");
+                    Picture infoScreen = new Picture(PADDING, PADDING, "resources/credits.jpg");
                     infoScreen.draw();
                     startScreen.delete();
 
@@ -231,7 +234,7 @@ public class Game {
         }
 
         player.delete();
-        player.endKeyboard();
+        keyboard.endKeyboard();
 
         start(numThrowables);
     }
@@ -263,4 +266,46 @@ public class Game {
             score.decreaseHealth();
         }
     }
+
+    public void setStartStage(boolean start) {
+        startStage = start;
+    }
+
+    public boolean getStartStage() {
+        return startStage;
+    }
+
+    public void setRestart(boolean restart) {
+        this.restart = restart;
+    }
+
+    public void setPause(boolean hold) {
+        pause = hold;
+    }
+
+    public boolean getPause() {
+        return pause;
+    }
+
+    public void setInfo(boolean info) {
+        this.info = info;
+    }
+
+    public boolean getInfo() {
+        return info;
+    }
+
+    public void setEasyMode(boolean easy) {
+       easyMode = easy;
+    }
+
+    public void setNormalMode(boolean normal) {
+        normalMode = normal;
+    }
+
+    public void setInsaneMode(boolean insane) {
+        insaneMode = insane;
+    }
+
+
 }

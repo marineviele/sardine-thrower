@@ -78,11 +78,6 @@ public abstract class AbstractDropable implements Catchable {
     }
 
     @Override
-    public boolean getOnFloor() {
-        return onFloor;
-    }
-
-    @Override
     public void setOnFloor(boolean value) {
         onFloor = value;
     }

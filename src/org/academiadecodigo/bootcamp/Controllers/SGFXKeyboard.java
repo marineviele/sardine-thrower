@@ -10,6 +10,7 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
 public class SGFXKeyboard implements KeyboardHandler {
 
+    private Game game;
     private Player player;
     private Keyboard keyboard;
     private KeyboardEvent leftPress;
@@ -23,8 +24,9 @@ public class SGFXKeyboard implements KeyboardHandler {
     private KeyboardEvent twoPress;
     private KeyboardEvent threePress;
 
-    public void initKeyboard(Player player) {
+    public void initKeyboard(Player player, Game game) {
         this.player = player;
+        this.game = game;
         keyboard = new Keyboard(this);
 
 
@@ -115,18 +117,23 @@ public class SGFXKeyboard implements KeyboardHandler {
 
             //Re-Start, Pause and Credits
             case KeyboardEvent.KEY_R:
-                Game.restart = true;
-                Game.startStage = false;
+
+                game.setRestart(true);
+                game.setStartStage(false);
                 break;
+
             case KeyboardEvent.KEY_P:
-                if(Game.startStage) {
-                    Game.pause = !Game.pause;
+
+                if(game.getStartStage()) {
+                    game.setPause(!game.getPause());
                     break;
                 }
                 break;
+
             case KeyboardEvent.KEY_I:
-                if(!Game.startStage) {
-                    Game.info = !Game.info;
+
+                if(!game.getStartStage()) {
+                    game.setInfo(!game.getInfo());
                     break;
                 }
                 break;
@@ -134,29 +141,23 @@ public class SGFXKeyboard implements KeyboardHandler {
 
             //Game level
             case KeyboardEvent.KEY_1:
-                if(!Game.startStage) {
-                    Game.startStage = true;
-                    Game.easyMode = true;
-                    Game.normalMode = false;
-                    Game.insaneMode = false;
+                if(!game.getStartStage()) {
+                    game.setStartStage(true);
+                    game.setEasyMode(true);
                     break;
                 }
                 break;
             case KeyboardEvent.KEY_2:
-                if(!Game.startStage) {
-                    Game.startStage = true;
-                    Game.easyMode = false;
-                    Game.normalMode = true;
-                    Game.insaneMode = false;
+                if(!game.getStartStage()) {
+                    game.setStartStage(true);
+                    game.setNormalMode(true);
                     break;
                 }
                 break;
             case KeyboardEvent.KEY_3:
-                if(!Game.startStage) {
-                    Game.startStage = true;
-                    Game.easyMode = false;
-                    Game.normalMode = false;
-                    Game.insaneMode = true;
+                if(!game.getStartStage()) {
+                    game.setStartStage(true);
+                    game.setInsaneMode(true);
                     break;
                 }
         }

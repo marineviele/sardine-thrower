@@ -10,8 +10,6 @@ public interface Catchable {
 
     void setOnAir(boolean value);
 
-    boolean getOnFloor();
-
     void setOnFloor(boolean value);
 
     Position getPosition();

@@ -8,7 +8,6 @@ public class Player extends AbstractMovable {
 
     private Position position;
     private Picture picture;
-    private SGFXKeyboard keyboard;
     private String url = "resources/plate.png";
 
     public Player(int xPos, int yPos, int gameWidth) {
@@ -22,12 +21,7 @@ public class Player extends AbstractMovable {
         picture = new Picture(xPos, yPos, url);
         super.setPicture(picture);
 
-        keyboard = new SGFXKeyboard();
-        keyboard.initKeyboard(this);
-    }
 
-    public void endKeyboard() {
-        keyboard.endKeyboard();
     }
 
     public Position getPosition() {

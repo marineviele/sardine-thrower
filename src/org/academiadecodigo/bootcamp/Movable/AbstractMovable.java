@@ -35,12 +35,13 @@ public abstract class AbstractMovable implements Movable {
 
         int xPos = position.getX();
         int tempVelocity = velocity;
+        int throwerWidth = 260;
 
         switch (direction) {
             case LEFT:
-                if (xPos - tempVelocity < 210){
-                    tempVelocity = xPos - 210;
-                    xPos = 210 + tempVelocity;
+                if (xPos - tempVelocity < throwerWidth){
+                    tempVelocity = xPos - throwerWidth;
+                    xPos = throwerWidth + tempVelocity;
                     break;
                 }
                 xPos = xPos - tempVelocity;
