@@ -14,10 +14,9 @@ public abstract class AbstractThrowable implements Catchable {
     private Picture picture;
     private int vx;
     private int vy = -3400;
-    private int t = 2;
     private int yPos;
 
-    public boolean checkIfFell(){
+    private boolean checkIfFell(){
         if (CollisionDectector.hitGround(this)) {
             picture.delete();
             Game.score.decreaseHealth();
@@ -32,6 +31,9 @@ public abstract class AbstractThrowable implements Catchable {
     @Override
     public void move() {
 
+        int t = 2;
+        int g = 10;
+
         if (checkIfFell()){
             return;
         }
@@ -41,7 +43,7 @@ public abstract class AbstractThrowable implements Catchable {
 
         x = x + (vx * t / 1000);
 
-        y = y + (vy * t / 1000) + (10 * (t / 1000) * (t / 1000) / 2);
+        y = y + (vy * t / 1000) + (g * (t / 1000) * (t / 1000) / 2);
 
         picture.translate(x - position.getX(), y - position.getY());
 
@@ -57,15 +59,14 @@ public abstract class AbstractThrowable implements Catchable {
         return yPos;
     }
 
+    public void setVx(int vx) {
+        this.vx = vx;
+    }
+
     @Override
     public void setPicture(Picture picture) {
         this.picture = picture;
         picture.draw();
-    }
-
-    @Override
-    public void setVx(int vx) {
-        this.vx = vx;
     }
 
     @Override
@@ -113,4 +114,8 @@ public abstract class AbstractThrowable implements Catchable {
         this.position = position;
     }
 
+    @Override
+    public void fell() {
+
+    }
 }

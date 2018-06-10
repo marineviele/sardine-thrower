@@ -27,8 +27,7 @@ public interface Catchable {
 
     int getWidth();
 
-    void setVx(int vx);
-
     int getYPos();
 
+    void fell();
 }

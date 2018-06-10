@@ -14,6 +14,8 @@ public class Game {
     public static final int gameWidth = 1600;
     public static final int gameHeight = 800;
 
+    
+
     private Thrower thrower;
     public static Player player;
     private static Picture stage;
@@ -25,7 +27,7 @@ public class Game {
     private int numThrowables;
 
     private Catchable[] dropables;
-    public static int nextToDrop = 0;
+    private int nextToDrop = 0;
 
     public static boolean pause;
     public static boolean info;
@@ -197,10 +199,13 @@ public class Game {
                 if (throwDelay > 50 && nextToDrop < dropables.length - 1) {
 
                     dropables[nextToDrop].move();
+
                     if (CollisionDectector.catchChecker(dropables[nextToDrop], player)) {
+
                         dropables[nextToDrop].setOnAir(false);
+
                         if (dropables[nextToDrop] instanceof Pot) {
-                            Game.score.decreaseHealth();
+                            score.decreaseHealth();
                         }
 
                         if (dropables[nextToDrop] instanceof Beer) {
@@ -210,9 +215,14 @@ public class Game {
                         if (dropables[nextToDrop] instanceof Guronsan) {
                             player.unDrink();
                         }
-
                         nextToDrop++;
                     }
+
+                    if(CollisionDectector.hitGround(dropables[nextToDrop])){
+                        dropables[nextToDrop].fell();
+                        nextToDrop++;
+                    }
+
                 }
 
                 player.move();
@@ -251,9 +261,4 @@ public class Game {
             Sound.playOnce("win.wav");
         }
     }
-
-    public int getStageHeight() {
-        return stage.getMaxY();
-    }
-
 }

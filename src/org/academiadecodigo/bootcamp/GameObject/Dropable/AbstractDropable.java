@@ -1,46 +1,46 @@
 package org.academiadecodigo.bootcamp.GameObject.Dropable;
 
+import org.academiadecodigo.bootcamp.CollisionDectector;
 import org.academiadecodigo.bootcamp.Game;
 import org.academiadecodigo.bootcamp.Position.Position;
 import org.academiadecodigo.bootcamp.GameObject.Catchable;
+import org.academiadecodigo.bootcamp.Sound;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public abstract class AbstractDropable implements Catchable {
+
     private boolean onAir = true;
     private boolean onFloor = false;
     private Position position;
     private Picture picture;
-    private int vx = 0;
     private int vy = 0;
-    private int t = 2;
+
+    @Override
+    public void fell(){
+        picture.delete();
+        vy = 0;
+        onFloor = true;
+        onAir = false;
+    }
 
     @Override
     public void move() {
-        int x = position.getX();
+
+        int t = 2;
+        int g = 10;
+
         int y = position.getY();
 
-        if (y >= Game.gameHeight - picture.getHeight() - 10) {
-            picture.delete();
-            vy = 0;
-            onFloor = true;
-            onAir = false;
-            Game.nextToDrop++;
-            return;
-        }
+        y = y + (vy * t / 1000) + (g * (t / 1000) * (t / 1000) / 2);
 
-        x = x + (vx * t / 1000);
+        picture.translate(0, y - position.getY());
 
-        y = y + (vy * t / 1000) + (10 * (t / 1000) * (t / 1000) / 2);
-
-        picture.translate(x - position.getX(), y - position.getY());
-
-        position.setX(x);
         position.setY(y);
 
         vy = vy + 10 * t;
     }
 
-    public void setPosition() {
+    void setPosition() {
         position = new Position(((int) (Math.random() * (1200 - 250) + 250)), -125);
     }
 
@@ -53,11 +53,6 @@ public abstract class AbstractDropable implements Catchable {
     public void setPicture(Picture picture) {
         this.picture = picture;
         picture.draw();
-    }
-
-    @Override
-    public void setVx(int vx) {
-        this.vx = vx;
     }
 
     @Override
