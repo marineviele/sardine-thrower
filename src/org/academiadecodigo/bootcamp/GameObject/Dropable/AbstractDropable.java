@@ -19,7 +19,7 @@ public abstract class AbstractDropable implements Catchable {
         int x = position.getX();
         int y = position.getY();
 
-        if (y >= Game.stage.getMaxY() - picture.getHeight() - 10) {
+        if (y >= Game.gameHeight - picture.getHeight() - 10) {
             picture.delete();
             vy = 0;
             onFloor = true;
@@ -38,6 +38,15 @@ public abstract class AbstractDropable implements Catchable {
         position.setY(y);
 
         vy = vy + 10 * t;
+    }
+
+    public void setPosition() {
+        position = new Position(((int) (Math.random() * (1200 - 250) + 250)), -125);
+    }
+
+    @Override
+    public int getYPos(){
+        return picture.getY();
     }
 
     @Override
@@ -96,8 +105,4 @@ public abstract class AbstractDropable implements Catchable {
         this.position = position;
     }
 
-    @Override
-    public void setPosition() {
-        position = new Position(((int) (Math.random() * (1200 - 250) + 250)), -125);
-    }
 }

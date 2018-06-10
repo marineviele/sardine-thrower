@@ -18,8 +18,8 @@ public class CollisionDectector {
 
 
         if (catchableMaxY > playerY &&
-                catchableMiddleX > playerMiddleX - 25 &&
-                catchableMiddleX < playerMiddleX + 20) {
+                catchableMiddleX > playerMiddleX - 35 &&
+                catchableMiddleX < playerMiddleX + 35) {
 
             catchable.getPicture().delete();
 
@@ -47,7 +47,7 @@ public class CollisionDectector {
         return false;
     }
 
-    public static void hitGround() {
-
+    public static boolean hitGround(Catchable catchable) {
+        return (catchable.getYPos() >= Game.gameHeight - catchable.getHeight() - Game.PADDING);
     }
 }

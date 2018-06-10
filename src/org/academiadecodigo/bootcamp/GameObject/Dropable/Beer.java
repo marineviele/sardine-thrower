@@ -10,4 +10,5 @@ public class Beer extends AbstractDropable {
         Picture picture = new Picture(super.getPosition().getX(), super.getPosition().getY(), url);
         super.setPicture(picture);
     }
+
 }

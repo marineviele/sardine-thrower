@@ -10,4 +10,6 @@ public class Guronsan extends AbstractDropable {
         Picture picture = new Picture(super.getPosition().getX(), super.getPosition().getY(), url);
         super.setPicture(picture);
     }
+
+
 }

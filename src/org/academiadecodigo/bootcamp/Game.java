@@ -11,10 +11,12 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Game {
     public static final int PADDING = 10;
+    public static final int gameWidth = 1600;
+    public static final int gameHeight = 800;
 
     private Thrower thrower;
     public static Player player;
-    public static Picture stage;
+    private static Picture stage;
     private Picture startScreen;
     public static boolean startStage;
     public static boolean restart;
@@ -248,6 +250,10 @@ public class Game {
             endGameBackground.draw();
             Sound.playOnce("win.wav");
         }
+    }
+
+    public int getStageHeight() {
+        return stage.getMaxY();
     }
 
 }

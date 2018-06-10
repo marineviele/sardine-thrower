@@ -1,5 +1,6 @@
 package org.academiadecodigo.bootcamp.GameObject.Throwable;
 
+import org.academiadecodigo.bootcamp.CollisionDectector;
 import org.academiadecodigo.bootcamp.Game;
 import org.academiadecodigo.bootcamp.GameObject.Catchable;
 import org.academiadecodigo.bootcamp.Position.Position;
@@ -14,20 +15,29 @@ public abstract class AbstractThrowable implements Catchable {
     private int vx;
     private int vy = -3400;
     private int t = 2;
+    private int yPos;
 
-    @Override
-    public void move() {
-        int x = position.getX();
-        int y = position.getY();
-
-        if (y >= Game.stage.getMaxY() - picture.getHeight() - Game.PADDING) {
+    public boolean checkIfFell(){
+        if (CollisionDectector.hitGround(this)) {
             picture.delete();
             Game.score.decreaseHealth();
             Sound.playOnce("missedCatch.wav");
             setOnFloor(true);
             setOnAir(false);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void move() {
+
+        if (checkIfFell()){
             return;
         }
+
+        int x = position.getX();
+        int y = position.getY();
 
         x = x + (vx * t / 1000);
 
@@ -39,6 +49,12 @@ public abstract class AbstractThrowable implements Catchable {
         position.setY(y);
 
         vy = vy + 10 * t;
+
+        yPos = y;
+    }
+
+    public int getYPos() {
+        return yPos;
     }
 
     @Override
@@ -97,8 +113,4 @@ public abstract class AbstractThrowable implements Catchable {
         this.position = position;
     }
 
-    @Override
-    public void setPosition() {
-        return;
-    }
 }

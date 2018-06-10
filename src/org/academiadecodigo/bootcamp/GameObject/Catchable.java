@@ -18,7 +18,6 @@ public interface Catchable {
 
     void setPosition(Position position);
 
-    void setPosition();
 
     void setPicture(Picture picture);
 
@@ -29,5 +28,7 @@ public interface Catchable {
     int getWidth();
 
     void setVx(int vx);
+
+    int getYPos();
 
 }

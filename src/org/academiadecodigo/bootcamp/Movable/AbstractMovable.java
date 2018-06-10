@@ -48,8 +48,8 @@ public abstract class AbstractMovable implements Movable {
                 break;
 
             case RIGHT:
-                if (xPos + tempVelocity > Game.stage.getMaxX() - picture.getWidth()){
-                    tempVelocity = Game.stage.getWidth() - Game.player.getWidth() - xPos;
+                if (xPos + tempVelocity > Game.gameWidth - picture.getWidth()){
+                    tempVelocity = Game.gameWidth - Game.player.getWidth() - xPos;
                     xPos = xPos + tempVelocity;
                     break;
                 }
