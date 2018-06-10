@@ -1,6 +1,7 @@
 package org.academiadecodigo.bootcamp;
 
 import org.academiadecodigo.bootcamp.Controllers.SGFXKeyboard;
+import org.academiadecodigo.bootcamp.GameObject.Dropable.DropableFactory;
 import org.academiadecodigo.bootcamp.GameObject.Throwable.ThrowableFactory;
 import org.academiadecodigo.bootcamp.GameObject.Thrower;
 import org.academiadecodigo.bootcamp.Movable.Player;
@@ -17,6 +18,7 @@ public class Game {
     private Thrower thrower;
     private Player player;
     private SGFXKeyboard keyboard;
+    private DropableFactory dropableFactory;
     private Catchable[] throwables;
     private Catchable[] dropables;
     private Picture stage;
@@ -50,6 +52,8 @@ public class Game {
 
         keyboard = new SGFXKeyboard();
         keyboard.initKeyboard(player, this);
+
+        dropableFactory = new DropableFactory();
 
         stageSound = new Sound("resources/game.wav");
 
@@ -126,15 +130,7 @@ public class Game {
         dropables = new Catchable[numThrowables];
 
         for (int i = 0; i < numThrowables; i++) {
-            if (Math.random() < 0.45) {
-                dropables[i] = new Pot();
-                continue;
-            }
-            if (Math.random() < 0.75) {
-                dropables[i] = new Beer();
-                continue;
-            }
-            dropables[i] = new Guronsan();
+            dropables[i] = DropableFactory.createDropable();
         }
 
         player.show();
@@ -245,13 +241,11 @@ public class Game {
             if (score.getHealth() <= 0) {
                 endGameBackground = new Picture(PADDING, PADDING, "resources/game-over.jpg");
                 endGameBackground.draw();
-                Sound.playOnce("resources/game-over.wav");
                 return;
             }
 
             endGameBackground = new Picture(PADDING, PADDING, "resources/win.jpg");
             endGameBackground.draw();
-            Sound.playOnce("resources/win.wav");
         }
     }
 

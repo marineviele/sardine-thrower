@@ -168,6 +168,5 @@ public class SGFXKeyboard implements KeyboardHandler {
     public void keyReleased(KeyboardEvent keyboardEvent) {
 
         player.setDirection(Direction.NODIRECTION);
-
     }
 }
