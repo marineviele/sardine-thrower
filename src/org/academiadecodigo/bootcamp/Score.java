@@ -37,16 +37,16 @@ public class Score {
         Picture scoreBar = new Picture(0, 0, "resources/scoreBar.jpg");
         scoreBar.draw();
 
-        textScore = new Text(50, 30, "");
+        textScore = new Text(90, 45, "");
         scoreToString();
-        textScore.setColor(Color.WHITE);
-        textScore.grow(30,20);
+        textScore.setColor(Color.BLACK);
+        textScore.grow(50,30);
         textScore.draw();
 
-        textHealth = new Text(200, 30, "");
+        textHealth = new Text(325, 45, "");
         healthToString();
-        textHealth.setColor(Color.WHITE);
-        textHealth.grow(30,20);
+        textHealth.setColor(Color.BLACK);
+        textHealth.grow(70,30);
         textHealth.draw();
 
         try {
