@@ -11,46 +11,42 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Game {
     public static final int PADDING = 10;
-    public static final int gameWidth = 1600;
     public static final int gameHeight = 800;
 
-    
-
     private Thrower thrower;
-    public static Player player;
-    private static Picture stage;
+    private Player player;
+    private Catchable[] throwables;
+    private Catchable[] dropables;
+    private Picture stage;
     private Picture startScreen;
+    private Picture endGameBackground;
+
+    public static Score score;
+    private Sound introSound;
+    private Sound stageSound;
+
     public static boolean startStage;
     public static boolean restart;
-    private Catchable[] throwables;
-    public static Score score;
-    private int numThrowables;
-
-    private Catchable[] dropables;
-    private int nextToDrop = 0;
-
     public static boolean pause;
     public static boolean info;
     public static boolean easyMode;
     public static boolean normalMode;
     public static boolean insaneMode;
+
+    private int nextToDrop = 0;
+    private int numThrowables;
     private int refreshRate;
-    private Sound introSound;
-    private Sound stageSound;
-
-    private Picture endGameBackground;
-
 
     public Game() {
     }
 
 
     private void init() {
-        startScreen = new Picture(10, 10, "startScreen.jpg");
+        startScreen = new Picture(PADDING, PADDING, "startScreen.jpg");
         startScreen.draw();
 
-        stage = new Picture(10, 10, "background.jpg");
-        player = new Player(stage.getWidth() / 2, 650);
+        stage = new Picture(PADDING, PADDING, "background.jpg");
+        player = new Player(stage.getWidth() / 2, stage.getHeight() - 150, stage.getWidth());
 
         stageSound = new Sound("game.wav");
 
@@ -116,13 +112,13 @@ public class Game {
 
         stageSound.play();
 
+        thrower = new Thrower();
+
         throwables = new Catchable[numThrowables];
 
         for (int i = 0; i < numThrowables; i++) {
             throwables[i] = ThrowableFactory.createThrowable();
         }
-
-        thrower = new Thrower();
 
         dropables = new Catchable[numThrowables];
 
@@ -242,7 +238,9 @@ public class Game {
             }
         }
 
+        player.delete();
         player.endKeyboard();
+
         start(numThrowables);
     }
 

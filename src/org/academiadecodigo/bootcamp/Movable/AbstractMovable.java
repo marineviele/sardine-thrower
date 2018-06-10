@@ -1,6 +1,5 @@
 package org.academiadecodigo.bootcamp.Movable;
 
-import org.academiadecodigo.bootcamp.Game;
 import org.academiadecodigo.bootcamp.Position.Position;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
@@ -12,11 +11,11 @@ public abstract class AbstractMovable implements Movable {
     private boolean drunk;
     private int velocity;
     private Direction direction;
+    private int gameWidth;
 
-    int xPos;
-
-    public AbstractMovable(int posX, int posY) {
+    AbstractMovable(int posX, int posY, int gameWidth) {
         position = new Position(posX, posY);
+        this.gameWidth = gameWidth;
     }
 
     public void setDirection(Direction direction){
@@ -34,7 +33,7 @@ public abstract class AbstractMovable implements Movable {
     @Override
     public void move() {
 
-        xPos = position.getX();
+        int xPos = position.getX();
         int tempVelocity = velocity;
 
         switch (direction) {
@@ -48,8 +47,8 @@ public abstract class AbstractMovable implements Movable {
                 break;
 
             case RIGHT:
-                if (xPos + tempVelocity > Game.gameWidth - picture.getWidth()){
-                    tempVelocity = Game.gameWidth - Game.player.getWidth() - xPos;
+                if (xPos + tempVelocity > gameWidth - picture.getWidth()){
+                    tempVelocity = gameWidth - picture.getWidth() - xPos;
                     xPos = xPos + tempVelocity;
                     break;
                 }
@@ -60,7 +59,7 @@ public abstract class AbstractMovable implements Movable {
                 break;
         }
 
-        picture.translate(xPos - position.getX(), 0);              //SFGX
+        picture.translate(xPos - position.getX(), 0);
         position.setX(xPos);
     }
 
@@ -80,7 +79,7 @@ public abstract class AbstractMovable implements Movable {
     @Override
     public void setPicture(Picture picture) {
         this.picture = picture;
-        this.width = picture.getWidth();            //SFGX
+        this.width = picture.getWidth();
     }
 
     @Override

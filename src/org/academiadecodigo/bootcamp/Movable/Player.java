@@ -6,20 +6,20 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Player extends AbstractMovable {
 
-    public Position position;
+    private Position position;
+    private Picture picture;
     private SGFXKeyboard keyboard;
-    //private int health = 6;
     private String url = "plate.png";
 
-    public Player(int xPos, int yPos) {
+    public Player(int xPos, int yPos, int gameWidth) {
 
-        super(xPos, yPos);
+        super(xPos, yPos, gameWidth);
         super.setVelocity(9);
         super.setDirection(Direction.NODIRECTION);
 
         position = super.getPosition();
 
-        Picture picture = new Picture(xPos, yPos, url);
+        picture = new Picture(xPos, yPos, url);
         super.setPicture(picture);
 
         keyboard = new SGFXKeyboard();
@@ -30,16 +30,11 @@ public class Player extends AbstractMovable {
         keyboard.endKeyboard();
     }
 
-    /*public void decreaseHealth() {
-        health--;
-    }*/
-
     public Position getPosition() {
         return position;
     }
 
-    /*public int getHealth() {
-        return health;
-    }*/
-
+    public void delete() {
+        picture.delete();
+    }
 }
