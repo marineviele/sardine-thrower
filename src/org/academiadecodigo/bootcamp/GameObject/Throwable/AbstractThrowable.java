@@ -16,16 +16,14 @@ public abstract class AbstractThrowable implements Catchable {
     private int vy = -3400;
     private int yPos;
 
-    private boolean checkIfFell(){
+    @Override
+    public void fell(){
         if (CollisionDectector.hitGround(this)) {
             picture.delete();
-            Game.score.decreaseHealth();
             Sound.playOnce("missedCatch.wav");
             setOnFloor(true);
             setOnAir(false);
-            return true;
         }
-        return false;
     }
 
     @Override
@@ -33,10 +31,6 @@ public abstract class AbstractThrowable implements Catchable {
 
         int t = 2;
         int g = 10;
-
-        if (checkIfFell()){
-            return;
-        }
 
         int x = position.getX();
         int y = position.getY();
@@ -114,8 +108,4 @@ public abstract class AbstractThrowable implements Catchable {
         this.position = position;
     }
 
-    @Override
-    public void fell() {
-
-    }
 }

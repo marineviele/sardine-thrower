@@ -21,7 +21,7 @@ public class Game {
     private Picture startScreen;
     private Picture endGameBackground;
 
-    public static Score score;
+    private Score score;
     private Sound introSound;
     private Sound stageSound;
 
@@ -37,7 +37,7 @@ public class Game {
     private int numThrowables;
     private int refreshRate;
 
-    public Game() {
+    Game() {
     }
 
 
@@ -171,25 +171,17 @@ public class Game {
 
                 thrower.sendThrowable(throwables[i]);
 
-                if (CollisionDectector.catchChecker(throwables[i], player)) {   // transformar método estático para método normal. game guarda instância de catchdetector.
-                    throwables[i].setOnAir(false);                   // criar método que invoca setOnAir e incrementScore no game
-                    score.incrementScore();
-                }
+                checkCollision(throwables[i]);
+
 
                 if (throwDelay > 150 && (normalMode || insaneMode)) {
                     thrower.sendThrowable(throwables[i + 1]);
-                    if (CollisionDectector.catchChecker(throwables[i + 1], player)) {
-                        throwables[i + 1].setOnAir(false);
-                        score.incrementScore();
-                    }
+                    checkCollision(throwables[i + 1]);
                 }
 
                 if (throwDelay > 300 && insaneMode) {
                     thrower.sendThrowable(throwables[i + 2]);
-                    if (CollisionDectector.catchChecker(throwables[i + 2], player)) {
-                        throwables[i + 2].setOnAir(false);
-                        score.incrementScore();
-                    }
+                    checkCollision(throwables[i + 2]);
                 }
 
                 if (throwDelay > 50 && nextToDrop < dropables.length - 1) {
@@ -214,7 +206,7 @@ public class Game {
                         nextToDrop++;
                     }
 
-                    if(CollisionDectector.hitGround(dropables[nextToDrop])){
+                    if (CollisionDectector.hitGround(dropables[nextToDrop])) {
                         dropables[nextToDrop].fell();
                         nextToDrop++;
                     }
@@ -248,15 +240,27 @@ public class Game {
 
         if (!restart) {
             if (score.getHealth() <= 0) {
-                endGameBackground = new Picture(10, 10, "game-over.jpg");
+                endGameBackground = new Picture(PADDING, PADDING, "game-over.jpg");
                 endGameBackground.draw();
                 Sound.playOnce("game-over.wav");
                 return;
             }
 
-            endGameBackground = new Picture(10, 10, "win.jpg");
+            endGameBackground = new Picture(PADDING, PADDING, "win.jpg");
             endGameBackground.draw();
             Sound.playOnce("win.wav");
+        }
+    }
+
+    private void checkCollision(Catchable catchable) {
+        if (CollisionDectector.catchChecker(catchable, player)) {
+            catchable.setOnAir(false);
+            score.incrementScore();
+        }
+
+        if (CollisionDectector.hitGround(catchable)) {
+            catchable.fell();
+            score.decreaseHealth();
         }
     }
 }
