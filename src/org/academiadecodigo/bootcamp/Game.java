@@ -1,8 +1,11 @@
 package org.academiadecodigo.bootcamp;
 
+import org.academiadecodigo.bootcamp.GameObject.ThrowableFactory;
 import org.academiadecodigo.bootcamp.Movable.Player;
-import org.academiadecodigo.bootcamp.Throwable.*;
-import org.academiadecodigo.bootcamp.Throwable.Throwable;
+import org.academiadecodigo.bootcamp.GameObject.Dropable.Beer;
+import org.academiadecodigo.bootcamp.GameObject.Dropable.Guronsan;
+import org.academiadecodigo.bootcamp.GameObject.Dropable.Pot;
+import org.academiadecodigo.bootcamp.GameObject.Throwable;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Game {
@@ -31,40 +34,14 @@ public class Game {
     }
 
 
-    private void init(int numThrowables) {
-        stage = new Picture(10, 10, "background.jpg");
-        stage.draw();
-
-
-        throwables = new Throwable[numThrowables];
-
-        for (int i = 0; i < numThrowables; i++) {
-            throwables[i] = ThrowableFactory.createThrowable();
-        }
-
-        dropables = new Throwable[numThrowables];
-
-        for (int i = 0; i < numThrowables; i++) {
-            if(Math.random() < 0.35) {
-                dropables[i] = new Poo();
-                continue;
-            }
-            if(Math.random() < 0.65) {
-                dropables[i] = new Beer();
-                continue;
-            }
-            dropables[i] = new Guronsan();
-        }
-
-        player = new Player(stage.getWidth() / 2, 650);
-
-        thrower = new Thrower();
-
-        score = new Score();
-
+    private void init() {
         startScreen = new Picture(10, 10, "startScreen.jpg");
         startScreen.draw();
+
+        stage = new Picture(10, 10, "background.jpg");
+        player = new Player(stage.getWidth() / 2, 650);
     }
+
 
     public void startGame(int numThrowables) {
         restart = false;
@@ -75,7 +52,7 @@ public class Game {
 
         this.numThrowables = numThrowables;
 
-        init(numThrowables);
+        init();
 
         while (!start) {
             try {
@@ -112,9 +89,39 @@ public class Game {
             }
         }
 
+        stage.draw();
+
+        throwables = new Throwable[numThrowables];
+
+        for (int i = 0; i < numThrowables; i++) {
+            throwables[i] = ThrowableFactory.createThrowable();
+        }
+
+        thrower = new Thrower();
+
+        dropables = new Throwable[numThrowables];
+
+        for (int i = 0; i < numThrowables; i++) {
+            if(Math.random() < 0.35) {
+                dropables[i] = new Pot();
+                continue;
+            }
+            if(Math.random() < 0.65) {
+                dropables[i] = new Beer();
+                continue;
+            }
+            dropables[i] = new Guronsan();
+        }
+
+        player.show();
+
+        score = new Score();
+
         startScreen.delete();
+
         start();
     }
+
 
     private void start() {
         int throwDelay = 0;
@@ -169,7 +176,7 @@ public class Game {
                     dropables[dropedDropables].move();
                     if (CatchDectector.catchChecker(dropables[dropedDropables], player)) {
                         dropables[dropedDropables].setOnAir(false);
-                        if(dropables[dropedDropables] instanceof Poo) {
+                        if(dropables[dropedDropables] instanceof Pot) {
                             Game.score.decreaseHealth();
                             Game.player.decreaseHealth();
                         }

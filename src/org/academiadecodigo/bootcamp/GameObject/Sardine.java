@@ -1,4 +1,4 @@
-package org.academiadecodigo.bootcamp.Throwable;
+package org.academiadecodigo.bootcamp.GameObject;
 
 import org.academiadecodigo.bootcamp.Position.Position;
 import org.academiadecodigo.simplegraphics.pictures.Picture;

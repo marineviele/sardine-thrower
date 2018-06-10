@@ -4,7 +4,7 @@ import org.academiadecodigo.bootcamp.Position.Position;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public interface Movable {
-    //void move(Direction direction);
+    void move();
 
     void setPicture(Picture picture);
 
@@ -13,4 +13,6 @@ public interface Movable {
     int getHeight();
 
     int getWidth();
+
+    void show();
 }

@@ -1,4 +1,4 @@
-package org.academiadecodigo.bootcamp.Throwable;
+package org.academiadecodigo.bootcamp.GameObject;
 
 import org.academiadecodigo.bootcamp.Game;
 import org.academiadecodigo.bootcamp.Position.Position;
@@ -110,5 +110,10 @@ public abstract class AbstractThrowable implements Throwable {
     @Override
     public void setPosition(Position position) {
         this.position = position;
+    }
+
+    @Override
+    public void setPosition() {
+        return;
     }
 }

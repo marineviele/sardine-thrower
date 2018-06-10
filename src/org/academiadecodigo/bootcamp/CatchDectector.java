@@ -1,10 +1,10 @@
 package org.academiadecodigo.bootcamp;
 
 import org.academiadecodigo.bootcamp.Movable.Player;
-import org.academiadecodigo.bootcamp.Throwable.Beer;
-import org.academiadecodigo.bootcamp.Throwable.Guronsan;
-import org.academiadecodigo.bootcamp.Throwable.Poo;
-import org.academiadecodigo.bootcamp.Throwable.Throwable;
+import org.academiadecodigo.bootcamp.GameObject.Dropable.Beer;
+import org.academiadecodigo.bootcamp.GameObject.Dropable.Guronsan;
+import org.academiadecodigo.bootcamp.GameObject.Dropable.Pot;
+import org.academiadecodigo.bootcamp.GameObject.Throwable;
 
 public class CatchDectector {
     public static boolean catchChecker(Throwable throwable, Player player) {
@@ -13,13 +13,13 @@ public class CatchDectector {
         int playerMiddleX = (player.getPosition().getX() + player.getWidth()) / 2;
         int throwableMiddleX = (throwable.getPosition().getX() + throwable.getWidth()) / 2;
 
-        if (throwable instanceof Poo) {
+        if (throwable instanceof Pot) {
             if (throwableMaxY > playerY &&
                     throwableMiddleX > playerMiddleX - 50 &&
                     throwableMiddleX < playerMiddleX + 20) {
 
                 throwable.getPicture().delete();
-                Sound.play("poo.wav");
+                Sound.play("pot.wav");
                 return true;
             }
             return false;

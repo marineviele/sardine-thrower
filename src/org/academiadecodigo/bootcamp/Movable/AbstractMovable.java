@@ -30,6 +30,7 @@ public abstract class AbstractMovable implements Movable {
         this.direction = direction;
     }
 
+    @Override
     public void move() {
 
         xPos = position.getX();
@@ -83,7 +84,6 @@ public abstract class AbstractMovable implements Movable {
         this.picture = picture;
         this.height = picture.getHeight();          //SFGX
         this.width = picture.getWidth();            //SFGX
-        picture.draw();                             //SFGX
     }
 
     @Override
@@ -94,5 +94,11 @@ public abstract class AbstractMovable implements Movable {
     @Override
     public int getWidth() {
         return width;
+    }
+
+    @Override
+    public void show() {
+        picture.draw();
+
     }
 }
