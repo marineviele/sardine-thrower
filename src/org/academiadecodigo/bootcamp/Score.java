@@ -7,9 +7,6 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class Score {
     private Integer score;
     private Integer health;
-    private String scoreText;
-    private String healthText;
-    private Picture scoreBar;
     private Text textScore;
     private Text textHealth;
 
@@ -37,7 +34,7 @@ public class Score {
 
     public void displayScore(){
 
-        scoreBar = new Picture(0, 0, "scoreBar.jpg");
+        Picture scoreBar = new Picture(0, 0, "scoreBar.jpg");
         scoreBar.draw();
 
         textScore = new Text(50, 30, "");
@@ -61,12 +58,12 @@ public class Score {
     }
 
     private void scoreToString(){
-        scoreText = score.toString();
+        String scoreText = score.toString();
         textScore.setText("Score: " + scoreText);
     }
 
     private void healthToString(){
-        healthText = health.toString();
+        String healthText = health.toString();
         textHealth.setText("Health: " + healthText);
     }
 }

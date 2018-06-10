@@ -1,7 +1,6 @@
 package org.academiadecodigo.bootcamp.GameObject;
 
 import org.academiadecodigo.bootcamp.Game;
-import org.academiadecodigo.bootcamp.GameObject.Catchable;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Thrower {

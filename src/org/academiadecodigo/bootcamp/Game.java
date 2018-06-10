@@ -190,7 +190,8 @@ public class Game {
                     }
                 }
 
-                if (throwDelay > 50) {
+                if (throwDelay > 50 && nextToDrop < dropables.length - 1) {
+
                     dropables[nextToDrop].move();
                     if (CatchDectector.catchChecker(dropables[nextToDrop], player)) {
                         dropables[nextToDrop].setOnAir(false);

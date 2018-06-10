@@ -8,15 +8,12 @@ public abstract class AbstractMovable implements Movable {
 
     private Position position;
     private Picture picture;
-    private int height;
     private int width;
     private boolean drunk;
-
-    private int velocity = 9;
-    private Direction direction = Direction.NODIRECTION;
+    private int velocity;
+    private Direction direction;
 
     int xPos;
-    int y;
 
     public AbstractMovable(int posX, int posY) {
         position = new Position(posX, posY);
@@ -28,6 +25,10 @@ public abstract class AbstractMovable implements Movable {
             return;
         }
         this.direction = direction;
+    }
+
+    public void setVelocity(int velocity) {
+        this.velocity = velocity;
     }
 
     @Override
@@ -61,9 +62,6 @@ public abstract class AbstractMovable implements Movable {
 
         picture.translate(xPos - position.getX(), 0);              //SFGX
         position.setX(xPos);
-
-        //System.out.println(xPos);
-        //System.out.println(position.getX());
     }
 
     public void drink() {
@@ -82,13 +80,7 @@ public abstract class AbstractMovable implements Movable {
     @Override
     public void setPicture(Picture picture) {
         this.picture = picture;
-        this.height = picture.getHeight();          //SFGX
         this.width = picture.getWidth();            //SFGX
-    }
-
-    @Override
-    public int getHeight() {
-        return height;
     }
 
     @Override

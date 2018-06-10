@@ -10,8 +10,6 @@ public interface Movable {
 
     Position getPosition();
 
-    int getHeight();
-
     int getWidth();
 
     void show();

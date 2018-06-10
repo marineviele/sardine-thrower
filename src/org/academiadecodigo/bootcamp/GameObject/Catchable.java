@@ -4,7 +4,7 @@ import org.academiadecodigo.bootcamp.Position.Position;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public interface Catchable {
-    public void move();
+    void move();
 
     boolean getOnAir();
 
@@ -28,11 +28,6 @@ public interface Catchable {
 
     int getWidth();
 
-    float getVx();
-
     void setVx(int vx);
 
-    float getVy();
-
-    void setVy(int vy);
 }
