@@ -47,23 +47,8 @@ public abstract class AbstractDropable implements Catchable {
     }
 
     @Override
-    public float getVx() {
-        return vx;
-    }
-
-    @Override
     public void setVx(int vx) {
         this.vx = vx;
-    }
-
-    @Override
-    public float getVy() {
-        return vy;
-    }
-
-    @Override
-    public void setVy(int vy) {
-        this.vy = vy;
     }
 
     @Override

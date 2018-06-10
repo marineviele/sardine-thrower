@@ -12,7 +12,7 @@ public class Score {
 
     public Score(){
         score = 0;
-        health = Game.player.getHealth();
+        health = 6;
         displayScore();
     }
 
@@ -65,5 +65,9 @@ public class Score {
     private void healthToString(){
         String healthText = health.toString();
         textHealth.setText("Health: " + healthText);
+    }
+
+    public Integer getHealth() {
+        return health;
     }
 }

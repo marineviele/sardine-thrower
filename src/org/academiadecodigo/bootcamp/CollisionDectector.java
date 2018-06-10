@@ -7,7 +7,7 @@ import org.academiadecodigo.bootcamp.GameObject.Dropable.Guronsan;
 import org.academiadecodigo.bootcamp.GameObject.Dropable.Pot;
 import org.academiadecodigo.bootcamp.GameObject.Catchable;
 
-public class CatchDectector {
+public class CollisionDectector {
 
     public static boolean catchChecker(Catchable catchable, Player player) {
 
@@ -45,5 +45,9 @@ public class CatchDectector {
         }
 
         return false;
+    }
+
+    public static void hitGround() {
+
     }
 }

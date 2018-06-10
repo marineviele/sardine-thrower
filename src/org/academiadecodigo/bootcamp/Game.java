@@ -10,6 +10,8 @@ import org.academiadecodigo.bootcamp.GameObject.Catchable;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Game {
+    public static final int PADDING = 10;
+
     private Thrower thrower;
     public static Player player;
     public static Picture stage;
@@ -147,7 +149,7 @@ public class Game {
         nextToDrop = 0;
 
         for (int i = 0; i < throwables.length - 2; i++) {
-            while (throwables[i].getOnAir() && player.getHealth() > 0 && startStage) {
+            while (throwables[i].getOnAir() && score.getHealth() > 0 && startStage) {
                 try {
                     Thread.sleep(refreshRate);
                 } catch (Exception e) {
@@ -169,14 +171,14 @@ public class Game {
 
                 thrower.sendThrowable(throwables[i]);
 
-                if (CatchDectector.catchChecker(throwables[i], player)) {   // transformar método estático para método normal. game guarda instância de catchdetector.
+                if (CollisionDectector.catchChecker(throwables[i], player)) {   // transformar método estático para método normal. game guarda instância de catchdetector.
                     throwables[i].setOnAir(false);                   // criar método que invoca setOnAir e incrementScore no game
                     score.incrementScore();
                 }
 
                 if (throwDelay > 150 && (normalMode || insaneMode)) {
                     thrower.sendThrowable(throwables[i + 1]);
-                    if (CatchDectector.catchChecker(throwables[i + 1], player)) {
+                    if (CollisionDectector.catchChecker(throwables[i + 1], player)) {
                         throwables[i + 1].setOnAir(false);
                         score.incrementScore();
                     }
@@ -184,7 +186,7 @@ public class Game {
 
                 if (throwDelay > 300 && insaneMode) {
                     thrower.sendThrowable(throwables[i + 2]);
-                    if (CatchDectector.catchChecker(throwables[i + 2], player)) {
+                    if (CollisionDectector.catchChecker(throwables[i + 2], player)) {
                         throwables[i + 2].setOnAir(false);
                         score.incrementScore();
                     }
@@ -193,11 +195,10 @@ public class Game {
                 if (throwDelay > 50 && nextToDrop < dropables.length - 1) {
 
                     dropables[nextToDrop].move();
-                    if (CatchDectector.catchChecker(dropables[nextToDrop], player)) {
+                    if (CollisionDectector.catchChecker(dropables[nextToDrop], player)) {
                         dropables[nextToDrop].setOnAir(false);
                         if (dropables[nextToDrop] instanceof Pot) {
                             Game.score.decreaseHealth();
-                            Game.player.decreaseHealth();
                         }
 
                         if (dropables[nextToDrop] instanceof Beer) {
@@ -236,7 +237,7 @@ public class Game {
     private void displayModal() {
 
         if (!restart) {
-            if (player.getHealth() <= 0) {
+            if (score.getHealth() <= 0) {
                 endGameBackground = new Picture(10, 10, "game-over.jpg");
                 endGameBackground.draw();
                 Sound.playOnce("game-over.wav");
@@ -248,4 +249,5 @@ public class Game {
             Sound.playOnce("win.wav");
         }
     }
+
 }

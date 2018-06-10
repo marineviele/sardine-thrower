@@ -20,10 +20,9 @@ public abstract class AbstractThrowable implements Catchable {
         int x = position.getX();
         int y = position.getY();
 
-        if (y >= Game.stage.getMaxY() - picture.getHeight() - 10) {
+        if (y >= Game.stage.getMaxY() - picture.getHeight() - Game.PADDING) {
             picture.delete();
             Game.score.decreaseHealth();
-            Game.player.decreaseHealth();
             Sound.playOnce("missedCatch.wav");
             setOnFloor(true);
             setOnAir(false);

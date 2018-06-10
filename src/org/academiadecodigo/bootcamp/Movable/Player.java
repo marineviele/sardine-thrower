@@ -8,7 +8,7 @@ public class Player extends AbstractMovable {
 
     public Position position;
     private SGFXKeyboard keyboard;
-    private int health = 6;
+    //private int health = 6;
     private String url = "plate.png";
 
     public Player(int xPos, int yPos) {
@@ -30,16 +30,16 @@ public class Player extends AbstractMovable {
         keyboard.endKeyboard();
     }
 
-    public void decreaseHealth() {
+    /*public void decreaseHealth() {
         health--;
-    }
+    }*/
 
     public Position getPosition() {
         return position;
     }
 
-    public int getHealth() {
+    /*public int getHealth() {
         return health;
-    }
+    }*/
 
 }
