@@ -38,7 +38,7 @@ public abstract class AbstractDropable implements Catchable {
     }
 
     void setPosition() {
-        position = new Position(((int) (Math.random() * (1200 - 250) + 250)), -125);
+        position = new Position(((int) (Math.random() * (1200 - 300) + 300)), -125);
     }
 
     @Override

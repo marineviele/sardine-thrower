@@ -28,7 +28,7 @@ public class SGFXKeyboard implements KeyboardHandler {
         this.player = player;
         this.game = game;
         keyboard = new Keyboard(this);
-        
+
         //Movement
         leftPress = new KeyboardEvent();
         leftPress.setKey(KeyboardEvent.KEY_LEFT);

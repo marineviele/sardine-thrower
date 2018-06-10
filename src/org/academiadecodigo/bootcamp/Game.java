@@ -25,8 +25,6 @@ public class Game {
     private Picture endGameBackground;
     private Score score;
 
-   // private GameMode gameMode;
-
     private Sound introSound;
     private Sound stageSound;
 
@@ -38,7 +36,6 @@ public class Game {
     private boolean normalMode;
     private boolean insaneMode;
 
-    private int nextToDrop = 0;
     private int numThrowables;
     private int refreshRate;
 
@@ -142,7 +139,7 @@ public class Game {
 
     private void startStage() {
         int throwDelay = 0;
-        nextToDrop = 0;
+        int nextToDrop = 0;
 
         for (int i = 0; i < throwables.length - 2; i++) {
             while (throwables[i].getOnAir() && score.getHealth() > 0 && startStage) {
@@ -297,6 +294,5 @@ public class Game {
     public void setInsaneMode(boolean insane) {
         insaneMode = insane;
     }
-
 
 }
