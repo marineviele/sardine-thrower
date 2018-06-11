@@ -42,6 +42,10 @@ To restart the game use `r` key. The `p` key pauses the game.
 
 If the sardines run out before your health reaches zero, you win the game.
 
+### LEAVING THE GAME
+
+While we cannot fathom the reason to do so, if you really must exit press `e` key.
+
 
 ## DEVELOPMENT
 
