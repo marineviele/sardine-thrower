@@ -1,27 +1,65 @@
 package org.academiadecodigo.bootcamp;
 
-import java.io.*;
 import javax.sound.sampled.*;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 
 public class Sound {
-    Clip clip;
 
-    public Sound(String pathname) {
+    private Clip clip;
+
+    public Sound(String path) {
+        // to load from jar
+        URL soundURL = Sound.class.getResource("/" + path);
+
+        AudioInputStream inputStream = null;
+
         try {
+            if (soundURL == null) {
+                File file = new File(path);
+                soundURL = file.toURI().toURL();
+            }
+
+            inputStream = AudioSystem.getAudioInputStream(soundURL);
+
             clip = AudioSystem.getClip();
-            clip.open(AudioSystem.getAudioInputStream(new File(pathname)));
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+            clip.open(inputStream);
+
+        } catch (UnsupportedAudioFileException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (LineUnavailableException e) {
+            e.printStackTrace();
         }
     }
 
-    public static void playOnce(String pathname) {
+    public static void playOnce(String path) {
+        // to load from jar
+        URL soundURL = Sound.class.getResource("/" + path);
+
+        AudioInputStream inputStream = null;
+
         try {
+            if (soundURL == null) {
+                File file = new File(path);
+                soundURL = file.toURI().toURL();
+            }
+
+            inputStream = AudioSystem.getAudioInputStream(soundURL);
+
             Clip clip = AudioSystem.getClip();
-            clip.open(AudioSystem.getAudioInputStream(new File(pathname)));
+            clip.open(inputStream);
+
             clip.start();
-        } catch (Exception e) {
-            System.out.println(e);
+
+        } catch (UnsupportedAudioFileException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (LineUnavailableException e) {
+            e.printStackTrace();
         }
     }
 
