@@ -77,7 +77,7 @@ public class Game {
                 }
 
                 if (info) {
-                    Picture infoScreen = new Picture(PADDING, PADDING, "resources/credits.jpg");
+                    Picture infoScreen = new Picture(PADDING, PADDING, "resources/info.jpg");
                     infoScreen.draw();
                     startScreen.delete();
 
@@ -229,8 +229,8 @@ public class Game {
         start(numThrowables);
     }
 
-    private void displayModal() {
 
+    private void displayModal() {
         if (!restart) {
             if (score.getHealth() <= 0) {
                 endGameBackground = new Picture(PADDING, PADDING, "resources/game-over.jpg");
@@ -243,6 +243,7 @@ public class Game {
         }
     }
 
+
     private void checkCollision(Catchable catchable) {
         if (CollisionDectector.catchChecker(catchable, player)) {
             catchable.setOnAir(false);
@@ -254,6 +255,7 @@ public class Game {
             score.decreaseHealth();
         }
     }
+
 
     public void setStartStage(boolean start) {
         startStage = start;
@@ -294,5 +296,4 @@ public class Game {
     public void setInsaneMode(boolean insane) {
         insaneMode = insane;
     }
-
 }

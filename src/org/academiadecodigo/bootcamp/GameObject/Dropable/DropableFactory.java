@@ -2,9 +2,6 @@ package org.academiadecodigo.bootcamp.GameObject.Dropable;
 
 import org.academiadecodigo.bootcamp.GameObject.Catchable;
 
-/**
- * Created by codecadet on 10/06/2018.
- */
 public class DropableFactory {
 
     public static Catchable createDropable() {
@@ -16,7 +13,5 @@ public class DropableFactory {
             return new Beer();
         }
         return new Guronsan();
-
     }
-
 }

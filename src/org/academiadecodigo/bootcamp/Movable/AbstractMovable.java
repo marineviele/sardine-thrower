@@ -91,6 +91,5 @@ public abstract class AbstractMovable implements Movable {
     @Override
     public void show() {
         picture.draw();
-
     }
 }

@@ -20,6 +20,7 @@ public class SGFXKeyboard implements KeyboardHandler {
     private KeyboardEvent rPress;
     private KeyboardEvent pPress;
     private KeyboardEvent iPress;
+    private KeyboardEvent ePress;
     private KeyboardEvent onePress;
     private KeyboardEvent twoPress;
     private KeyboardEvent threePress;
@@ -51,7 +52,7 @@ public class SGFXKeyboard implements KeyboardHandler {
         keyboard.addEventListener(rightReleased);
 
 
-        //Re-Start, Pause and Credits
+        //Re-Start, Pause, Info and Exit
         rPress = new KeyboardEvent();
         rPress.setKey(KeyboardEvent.KEY_R);
         rPress.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
@@ -66,6 +67,11 @@ public class SGFXKeyboard implements KeyboardHandler {
         iPress.setKey(KeyboardEvent.KEY_I);
         iPress.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
         keyboard.addEventListener(iPress);
+
+        ePress = new KeyboardEvent();
+        ePress.setKey(KeyboardEvent.KEY_E);
+        ePress.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        keyboard.addEventListener(ePress);
 
 
         //Game level
@@ -85,6 +91,7 @@ public class SGFXKeyboard implements KeyboardHandler {
         keyboard.addEventListener(threePress);
     }
 
+
     public void endKeyboard() {
         keyboard.removeEventListener(leftPress);
         keyboard.removeEventListener(rightPress);
@@ -93,6 +100,7 @@ public class SGFXKeyboard implements KeyboardHandler {
         keyboard.removeEventListener(rPress);
         keyboard.removeEventListener(pPress);
         keyboard.removeEventListener(iPress);
+        keyboard.removeEventListener(ePress);
         keyboard.removeEventListener(onePress);
         keyboard.removeEventListener(twoPress);
         keyboard.removeEventListener(threePress);
@@ -116,7 +124,7 @@ public class SGFXKeyboard implements KeyboardHandler {
                 break;
 
 
-            //Re-Start, Pause and Credits
+            //Re-Start, Pause, Info and Exit
             case KeyboardEvent.KEY_R:
 
                 game.setPause(false);
@@ -138,6 +146,11 @@ public class SGFXKeyboard implements KeyboardHandler {
                     game.setInfo(!game.getInfo());
                     break;
                 }
+                break;
+
+            case KeyboardEvent.KEY_E:
+
+                System.exit(0);
                 break;
 
 
@@ -170,9 +183,9 @@ public class SGFXKeyboard implements KeyboardHandler {
         }
     }
 
+
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
-
         player.setDirection(Direction.NODIRECTION);
     }
 }

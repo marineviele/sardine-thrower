@@ -8,7 +8,7 @@ public class ThrowableFactory {
     public static Catchable createThrowable() {
         Position position = new Position(25, 660);
 
-        int vx = (int)((Math.random() * (2200 - 500) + 500));// comment
+        int vx = (int)((Math.random() * (2200 - 500) + 500));
 
         return new Sardine(position, vx);
     }

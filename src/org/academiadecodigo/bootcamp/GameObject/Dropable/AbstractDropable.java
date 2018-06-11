@@ -91,5 +91,4 @@ public abstract class AbstractDropable implements Catchable {
     public void setPosition(Position position) {
         this.position = position;
     }
-
 }
