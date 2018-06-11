@@ -1,6 +1,5 @@
 package org.academiadecodigo.bootcamp.Movable;
 
-import org.academiadecodigo.bootcamp.Controllers.SGFXKeyboard;
 import org.academiadecodigo.bootcamp.Position.Position;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
@@ -20,8 +19,6 @@ public class Player extends AbstractMovable {
 
         picture = new Picture(xPos, yPos, url);
         super.setPicture(picture);
-
-
     }
 
     public Position getPosition() {

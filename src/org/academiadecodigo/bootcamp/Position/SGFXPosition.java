@@ -27,5 +27,4 @@ public class SGFXPosition extends Position {
     public void setY(int y) {
         this.y = y;
     }
-
 }
